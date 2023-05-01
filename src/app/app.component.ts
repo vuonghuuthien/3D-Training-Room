@@ -9,28 +9,51 @@ export interface ISize {
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  styleUrls: ['./app.component.scss'],
 })
-
 export class AppComponent {
   title = '3DTrainingRoom';
 
-  scale = 1/10;
+  scale = 1 / 10;
 
   room: ISize = {
     width: 3500 * this.scale,
-    depth: 7300 * this.scale
-  }
+    depth: 7300 * this.scale,
+  };
 
   step_count = 15;
   step: ISize = {
-    height: 170 * this.scale,
-    depth: 280 * this.scale
-  }
+    height: 180 * this.scale,
+    depth: 280 * this.scale,
+  };
 
   step_big_count = Math.ceil(this.step_count / 2);
   step_big: ISize = {
-    height: 170 * 2 * this.scale,
-    depth: 280 * 2 * this.scale
+    height: 180 * 2 * this.scale,
+    depth: 280 * 2 * this.scale,
+  };
+
+  calcStepFront(height: any, depth: any) {
+    return {
+      top: Math.abs(height - depth) / 2,
+      y: height / 2,
+      z: -(depth / 2),
+    };
+  }
+
+  calcStepBack(height: any, depth: any) {
+    return {
+      top: Math.abs(height - depth) / 2,
+      y: height / 2,
+      z: depth / 2,
+    };
+  }
+
+  calcStepLeft(height: any, depth: any) {
+    return {
+      top: Math.abs(height - depth) / 2,
+      y: height / 2,
+      z: -(depth / 2),
+    };
   }
 }

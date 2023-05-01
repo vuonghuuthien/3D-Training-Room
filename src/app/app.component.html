@@ -4,13 +4,16 @@
   [style.--floor_depth]="room.depth"
 >
   <div class="stair-cont">
-    <div class="stair-step-big">
+    <div class="stair-step stair-step-big">
       <div
         *ngFor="let count of [].constructor(this.step_big_count); index as i"
-        class="step-big"
-        [style.--step_big_count]="i"
-        [style.--step_big_height]="step_big.height"
-        [style.--step_big_depth]="step_big.depth"
+        class="step"
+        [style.--step_count]="i"
+        [style.--step_height]="step_big.height"
+        [style.--step_depth]="step_big.depth"
+        [style.--step_top]="calcStepFront(step_big.height, step_big.depth).top"
+        [style.--step_Y]="calcStepFront(step_big.height, step_big.depth).y"
+        [style.--step_Z]="calcStepFront(step_big.height, step_big.depth).z"
       >
         <div class="step__front face"></div>
         <div class="step__back face"></div>
@@ -20,13 +23,16 @@
         <div class="step__bottom face"></div>
       </div>
     </div>
-    <div class="stair-step">
+    <div class="stair-step stair-step-small">
       <div
         *ngFor="let count of [].constructor(this.step_count); index as i"
         class="step"
         [style.--step_count]="i"
         [style.--step_height]="step.height"
         [style.--step_depth]="step.depth"
+        [style.--step_top]="calcStepFront(step.height, step.depth).top"
+        [style.--step_Y]="calcStepFront(step.height, step.depth).y"
+        [style.--step_Z]="calcStepFront(step.height, step.depth).z"
       >
         <div class="step__front face"></div>
         <div class="step__back face"></div>

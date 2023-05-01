@@ -1,3 +1,5 @@
+@use "sass:math";
+
 @function addUnit($css_variable) {
   @return calc(var($css_variable) * 1px);
 }
@@ -20,26 +22,8 @@
 		background: blue;
 		display: flex;
 
-		.stair-step-big {
-			width: 100%;
-			height: 100%;
-			background: grey;
-			display: flex;
-			flex-direction: column-reverse;
-			.step-big {
-				width: 100%;
-				height: addUnit(--step_big_depth);
-				background: yellow;
-				transform: translateZ(calc(addUnit(--step_big_height) * var(--step_big_count)));
-				.step__top {
-					background: white;
-					width: 100%;
-					height: 100%;
-				}
-			}
-		}
 		.stair-step {
-			width: 90px;
+			width: 100%;
 			height: 100%;
 			background: green;
 			display: flex;
@@ -47,14 +31,33 @@
 			.step {
 				width: 100%;
 				height: addUnit(--step_depth);
-				background: yellow;
 				transform: translateZ(calc(addUnit(--step_height) * var(--step_count)));
+				background: tomato;
 				.step__top {
 					background: white;
 					width: 100%;
 					height: 100%;
+					transform: translateZ(addUnit(--step_height));
 				}
+				.step__front {
+					background: yellow;
+					width: 100%;
+					height: addUnit(--step_height);
+					top: addUnit(--step_top);
+					transform: rotateX(90deg) translateY(addUnit(--step_Y)) translateZ(addUnit(--step_Z));
+				}
+        .step__right {
+          background: blue;
+					width: addUnit(--step_height);
+					height: addUnit(--step_depth);
+					transform: rotateY(90deg) translateX(-18px);
+          left: calc(100% - 18px);
+        }
 			}
+		}
+		
+		.stair-step-small {
+			width: 90px;
 		}
 	}
 }
