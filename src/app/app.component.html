@@ -11,6 +11,42 @@
   [style.--base-depth]="room.depth"
 >
   <div
+    class="wall-cont"
+    [style.--wall-bg-top]="room_bg_top"
+    [style.--wall-bg-left]="room_bg_left"
+    [style.--wall-bg-front]="room_bg_front"
+  >
+    <div
+      class="wall-left"
+      [style.--wall-left-width]="wall_thick"
+      [style.--wall-left-height]="room.height"
+      [style.--wall-left-depth]="room.depth"
+      [style.--wall-left-z-center]="calcZCenter(room.height)"
+      [style.--wall-left-top-fb]="calcTop_FB(room.height, room.depth)"
+      [style.--wall-left-z-fb]="calcZ_FB(room.depth)"
+    >
+      <div
+        *ngFor="let face of face_list"
+        [class]="'face wall-left__' + face"
+      ></div>
+    </div>
+    <div
+      class="wall-back"
+      [style.--wall-back-width]="room.width"
+      [style.--wall-back-height]="room.height"
+      [style.--wall-back-depth]="wall_thick"
+      [style.--wall-back-z-center]="calcZCenter(room.height)"
+      [style.--wall-back-top-fb]="calcTop_FB(room.height, wall_thick)"
+      [style.--wall-back-z-fb]="calcZ_FB(wall_thick)"
+    >
+      <div
+        *ngFor="let face of face_list"
+        [class]="'face wall-back__' + face"
+      ></div>
+    </div>
+  </div>
+
+  <!-- <div
     class="room"
     [style.--room-width]="room.width"
     [style.--room-height]="room.height"
@@ -18,9 +54,12 @@
     [style.--room-z-center]="calcZCenter(room.height)"
     [style.--room-top-fb]="calcTop_FB(room.height, room.depth)"
     [style.--room-z-fb]="calcZ_FB(room.depth)"
+    [style.--room-bg-top]="room_bg_top"
+    [style.--room-bg-left]="room_bg_left"
+    [style.--room-bg-front]="room_bg_front"
   >
     <div *ngFor="let face of face_list" [class]="'face room__' + face"></div>
-  </div>
+  </div> -->
 
   <div
     class="stair-cont stair-style-1"
@@ -34,7 +73,9 @@
       [style.--step-height]="step_lg_size.height"
       [style.--step-depth]="step_lg_size.depth"
       [style.--step-z-center]="calcZCenter(step_lg_size.height)"
-      [style.--step-top-fb]="calcTop_FB(step_lg_size.height, step_lg_size.depth)"
+      [style.--step-top-fb]="
+        calcTop_FB(step_lg_size.height, step_lg_size.depth)
+      "
       [style.--step-z-fb]="calcZ_FB(step_lg_size.depth)"
     >
       <div
@@ -53,7 +94,9 @@
       [style.--step-height]="step_sm_size.height"
       [style.--step-depth]="step_sm_size.depth"
       [style.--step-z-center]="calcZCenter(step_sm_size.height)"
-      [style.--step-top-fb]="calcTop_FB(step_sm_size.height, step_sm_size.depth)"
+      [style.--step-top-fb]="
+        calcTop_FB(step_sm_size.height, step_sm_size.depth)
+      "
       [style.--step-z-fb]="calcZ_FB(step_sm_size.depth)"
       [style.--stair-sm-width]="stair_sm_width"
     >
@@ -85,7 +128,9 @@
       [style.--step-height]="step_lg_size.height"
       [style.--step-depth]="step_lg_size.depth"
       [style.--step-z-center]="calcZCenter(step_lg_size.height)"
-      [style.--step-top-fb]="calcTop_FB(step_lg_size.height, step_lg_size.depth)"
+      [style.--step-top-fb]="
+        calcTop_FB(step_lg_size.height, step_lg_size.depth)
+      "
       [style.--step-z-fb]="calcZ_FB(step_lg_size.depth)"
     >
       <div
@@ -104,7 +149,9 @@
       [style.--step-height]="step_sm_size.height"
       [style.--step-depth]="step_sm_size.depth"
       [style.--step-z-center]="calcZCenter(step_sm_size.height)"
-      [style.--step-top-fb]="calcTop_FB(step_sm_size.height, step_sm_size.depth)"
+      [style.--step-top-fb]="
+        calcTop_FB(step_sm_size.height, step_sm_size.depth)
+      "
       [style.--step-z-fb]="calcZ_FB(step_sm_size.depth)"
       [style.--stair-sm-width]="stair_sm_width"
     >

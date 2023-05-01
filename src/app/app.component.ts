@@ -11,11 +11,19 @@ export class AppComponent {
   scale = 1 / 10;
   face_list = ['top', 'bottom', 'front', 'back', 'left', 'right'];
 
+  // Room Detail
   room = {
     width: 3500 * this.scale,
     height: 3400 * this.scale,
     depth: 7300 * this.scale,
   };
+  // Room Style
+  room_bg_top = '#FCFCFC';
+  room_bg_left = '#E8E8E8';
+  room_bg_front = '#D6D6D6';
+
+  // Wall Detail
+  wall_thick = 2;
 
   // Stair Detail
   stair_sm_width = 90;
@@ -24,13 +32,11 @@ export class AppComponent {
     height: 180 * this.scale,
     depth: 280 * this.scale,
   };
-
   step_lg_num = Math.ceil(this.step_sm_num / 2);
   step_lg_size = {
     height: 180 * 2 * this.scale,
     depth: 280 * 2 * this.scale,
   };
-
   // Stair Style
   stair_style = 2;
   // Stair Style 1
@@ -52,11 +58,11 @@ export class AppComponent {
   }
 
   calcZCenter(height: any) {
-    return height/2;
+    return height / 2;
   }
 
   calcTop_FB(height: any, depth: any) {
-    return Math.abs(height - depth) / 2;
+    return (depth - height) / 2;
   }
 
   calcZ_FB(depth: any) {

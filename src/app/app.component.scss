@@ -38,11 +38,11 @@
     top: $top-fb;
   }
   #{$selector}__front {
-    transform: rotateX(90deg) translateZ($z_fb);
+    transform: rotateX(-90deg) translateZ($z_fb);
     background: $bg_front;
   }
   #{$selector}__back {
-    transform: rotateX(-90deg) translateZ($z_fb);
+    transform: rotateX(90deg) translateZ($z_fb);
     background: $bg_back;
   }
 
@@ -89,7 +89,6 @@
 .base {
   width: addUnit(--base-width);
   height: addUnit(--base-depth);
-  background: blue;
   transform: perspective(10000px) rotateX(70deg) rotateZ(50deg)
     translateZ(-200px);
   background: red;
@@ -98,14 +97,77 @@
   // animation: animate 10s linear infinite;
 }
 
-.room {
-  width: addUnit(--room-width);
-  height: addUnit(--room-depth);
-  background: red;
-  top: 0;
-  left: 0;
-  transform: translateZ(addUnit(--room-z-center));
+.wall-cont {
+  .wall-left {
+    width: addUnit(--wall-left-width);
+    height: addUnit(--wall-left-depth);
+    top: 0;
+    left: 0;
+    position: absolute;
+    transform: translateZ(addUnit(--wall-left-z-center));
+
+    @include face_list(
+      ".wall-left",
+      addUnit(--wall-left-height),
+      addUnit(--wall-left-depth),
+      addUnit(--wall-left-z-center),
+      addUnit(--wall-left-top-fb),
+      addUnit(--wall-left-z-fb),
+      var(--wall-bg-top),
+      var(--wall-bg-top),
+      var(--wall-bg-front),
+      var(--wall-bg-front),
+      var(--wall-bg-left),
+      var(--wall-bg-left)
+    );
+  }
+  .wall-back {
+    width: addUnit(--wall-back-width);
+    height: addUnit(--wall-back-depth);
+    top: 0;
+    left: 0;
+    position: absolute;
+    transform: translateZ(addUnit(--wall-back-z-center));
+
+    @include face_list(
+      ".wall-back",
+      addUnit(--wall-back-height),
+      addUnit(--wall-back-depth),
+      addUnit(--wall-back-z-center),
+      addUnit(--wall-back-top-fb),
+      addUnit(--wall-back-z-fb),
+      var(--wall-bg-top),
+      var(--wall-bg-top),
+      var(--wall-bg-front),
+      var(--wall-bg-front),
+      var(--wall-bg-left),
+      var(--wall-bg-left)
+    );
+  }
 }
+
+// .room {
+//   width: addUnit(--room-width);
+//   height: addUnit(--room-depth);
+//   top: 0;
+//   left: 0;
+//   transform: translateZ(addUnit(--room-z-center));
+
+//   @include face_list(
+//     ".room",
+//     addUnit(--room-height),
+//     addUnit(--room-depth),
+//     addUnit(--room-z-center),
+//     addUnit(--room-top-fb),
+//     addUnit(--room-z-fb),
+//     var(--room-bg-top),
+//     var(--room-bg-top),
+//     var(--room-bg-front),
+//     var(--room-bg-front),
+//     var(--room-bg-left),
+//     var(--room-bg-left)
+//   );
+// }
 
 .stair-cont {
   position: absolute;
