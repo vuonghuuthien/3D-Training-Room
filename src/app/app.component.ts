@@ -9,7 +9,7 @@ export class AppComponent {
   title = '3D Training Room';
 
   scale = 1 / 10;
-  face_list = ['front', 'back', 'top', 'bottom', 'left', 'right'];
+  face_list = ['top', 'bottom', 'front', 'back', 'left', 'right'];
 
   room = {
     width: 3500 * this.scale,

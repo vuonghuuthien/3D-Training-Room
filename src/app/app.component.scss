@@ -2,8 +2,65 @@
   @return calc(var($css_variable) * 1px);
 }
 
-@mixin face_list($selector, $z_center) {
+@mixin face_list(
+  $selector,
+  $height,
+  $depth,
+  $z_center,
+  $top_fb,
+  $z_fb,
+  $bg_top,
+  $bg_bottom,
+  $bg_front,
+  $bg_back,
+  $bg_left,
+  $bg_right
+) {
+  #{$selector}__top,
+  #{$selector}__bottom {
+    width: 100%;
+    height: 100%;
+  }
 
+  #{$selector}__top {
+    transform: rotateX(0deg) translateZ($z_center);
+    background: $bg_top;
+  }
+  #{$selector}__bottom {
+    transform: rotateX(180deg) translateZ($z_center);
+    background: $bg_bottom;
+  }
+
+  #{$selector}__front,
+  #{$selector}__back {
+    width: 100%;
+    height: $height;
+    top: $top-fb;
+  }
+  #{$selector}__front {
+    transform: rotateX(90deg) translateZ($z_fb);
+    background: $bg_front;
+  }
+  #{$selector}__back {
+    transform: rotateX(-90deg) translateZ($z_fb);
+    background: $bg_back;
+  }
+
+  #{$selector}__left,
+  #{$selector}__right {
+    width: $height;
+    height: $depth;
+  }
+  #{$selector}__left {
+    left: calc(-1 * $z_center);
+    transform: rotateY(-90deg);
+    background: $bg_left;
+  }
+  #{$selector}__right {
+    left: calc(100% - $z_center);
+    transform: rotateY(90deg);
+    background: $bg_right;
+  }
 }
 
 .title {
@@ -79,47 +136,20 @@
         )
       );
 
-      .step__top,
-      .step__bottom {
-        width: 100%;
-        height: 100%;
-        background: var(--step-bg-top);
-      }
-      .step__top {
-        transform: rotateX(0deg) translateZ(addUnit(--step-z-center));
-      }
-      .step__bottom {
-        transform: rotateX(180deg) translateZ(addUnit(--step-z-center));
-      }
-
-      .step__front,
-      .step__back {
-        width: 100%;
-        height: addUnit(--step-height);
-        top: addUnit(--step-top-fb);
-        background: var(--step-bg-front);
-      }
-      .step__front {
-        transform: rotateX(90deg) translateZ(addUnit(--step-z-fb));
-      }
-      .step__back {
-        transform: rotateX(-90deg) translateZ(addUnit(--step-z-fb));
-      }
-
-      .step__left,
-      .step__right {
-        width: addUnit(--step-height);
-        height: addUnit(--step-depth);
-        background: var(--step-bg-left);
-      }
-      .step__left {
-        left: calc(-1 * addUnit(--step-z-center));
-        transform: rotateY(-90deg);
-      }
-      .step__right {
-        left: calc(100% - addUnit(--step-z-center));
-        transform: rotateY(90deg);
-      }
+      @include face_list(
+        ".step",
+        addUnit(--step-height),
+        addUnit(--step-depth),
+        addUnit(--step-z-center),
+        addUnit(--step-top-fb),
+        addUnit(--step-z-fb),
+        var(--step-bg-top),
+        var(--step-bg-top),
+        var(--step-bg-front),
+        var(--step-bg-front),
+        var(--step-bg-left),
+        var(--step-bg-left)
+      );
     }
   }
 
