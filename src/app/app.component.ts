@@ -21,7 +21,7 @@ export class AppComponent {
     depth: 7300 * this.scale,
   };
 
-  step_count = 15;
+  step_count = 14;
   step: ISize = {
     height: 180 * this.scale,
     depth: 280 * this.scale,
@@ -33,26 +33,13 @@ export class AppComponent {
     depth: 280 * 2 * this.scale,
   };
 
-  calcStepFront(height: any, depth: any) {
-    return {
-      top: Math.abs(height - depth) / 2,
-      y: height / 2,
-      z: -(depth / 2),
-    };
+  calcZCenter(height: any) {
+    return height/2;
   }
 
-  calcStepBack(height: any, depth: any) {
+  calcStepFrontBack(height: any, depth: any) {
     return {
       top: Math.abs(height - depth) / 2,
-      y: height / 2,
-      z: depth / 2,
-    };
-  }
-
-  calcStepLeft(height: any, depth: any) {
-    return {
-      top: Math.abs(height - depth) / 2,
-      y: height / 2,
       z: -(depth / 2),
     };
   }

@@ -11,9 +11,9 @@
         [style.--step_count]="i"
         [style.--step_height]="step_big.height"
         [style.--step_depth]="step_big.depth"
-        [style.--step_top]="calcStepFront(step_big.height, step_big.depth).top"
-        [style.--step_Y]="calcStepFront(step_big.height, step_big.depth).y"
-        [style.--step_Z]="calcStepFront(step_big.height, step_big.depth).z"
+        [style.--step-z-center]="calcZCenter(step_big.height)"
+        [style.--step_top_fb]="calcStepFrontBack(step_big.height, step_big.depth).top"
+        [style.--step_z_fb]="calcStepFrontBack(step_big.height, step_big.depth).z"
       >
         <div class="step__front face"></div>
         <div class="step__back face"></div>
@@ -30,9 +30,9 @@
         [style.--step_count]="i"
         [style.--step_height]="step.height"
         [style.--step_depth]="step.depth"
-        [style.--step_top]="calcStepFront(step.height, step.depth).top"
-        [style.--step_Y]="calcStepFront(step.height, step.depth).y"
-        [style.--step_Z]="calcStepFront(step.height, step.depth).z"
+        [style.--step-z-center]="calcZCenter(step.height)"
+        [style.--step_top_fb]="calcStepFrontBack(step.height, step.depth).top"
+        [style.--step_z_fb]="calcStepFrontBack(step.height, step.depth).z"
       >
         <div class="step__front face"></div>
         <div class="step__back face"></div>

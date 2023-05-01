@@ -5,65 +5,94 @@
 }
 
 .face {
-	position: absolute;
+  position: absolute;
 }
 
 .floor {
   width: addUnit(--floor_width);
   height: addUnit(--floor_depth);
-	transform: perspective(10000px) rotateX(70deg) rotateZ(50deg) translateZ(-300px);
-	background: red;
-	position: relative;
+  transform: perspective(10000px) rotateX(70deg) rotateZ(50deg)
+    translateZ(-300px);
+  background: red;
+  position: relative;
+  // transform: rotateX(-30deg) rotateY(250deg);
+  // animation: animate 10s linear infinite;
 
-	.stair-cont {
-		position: absolute;
+  .stair-cont {
+    position: absolute;
     width: 100%;
     height: fit-content;
-		background: blue;
-		display: flex;
+    // background: blue;
+    display: flex;
 
-		.stair-step {
-			width: 100%;
-			height: 100%;
-			background: green;
-			display: flex;
-			flex-direction: column-reverse;
-			.step {
-				width: 100%;
-				height: addUnit(--step_depth);
-				transform: translateZ(calc(addUnit(--step_height) * var(--step_count)));
-				background: tomato;
-				.step__top {
-					background: white;
-					width: 100%;
-					height: 100%;
-					transform: translateZ(addUnit(--step_height));
-				}
-				.step__front {
-					background: yellow;
-					width: 100%;
-					height: addUnit(--step_height);
-					top: addUnit(--step_top);
-					transform: rotateX(90deg) translateY(addUnit(--step_Y)) translateZ(addUnit(--step_Z));
-				}
-        .step__right {
-          background: blue;
-					width: addUnit(--step_height);
-					height: addUnit(--step_depth);
-					transform: rotateY(90deg) translateX(-18px);
-          left: calc(100% - 18px);
+    .stair-step {
+      width: 100%;
+      height: 100%;
+      // background: green;
+      display: flex;
+      flex-direction: column-reverse;
+      .step {
+        width: 100%;
+        height: addUnit(--step_depth);
+        transform: translateZ(
+          calc(
+            addUnit(--step-z-center) + addUnit(--step_height) *
+              var(--step_count)
+          )
+        );
+
+        .step__top,
+        .step__bottom {
+          width: 100%;
+          height: 100%;
+          background: #cf8df1;
         }
-			}
-		}
-		
-		.stair-step-small {
-			width: 90px;
-		}
-	}
+        .step__top {
+          transform: rotateX(0deg) translateZ(addUnit(--step-z-center));
+        }
+        .step__bottom {
+          transform: rotateX(180deg) translateZ(addUnit(--step-z-center));
+        }
+
+        .step__front,
+        .step__back {
+          width: 100%;
+          height: addUnit(--step_height);
+          top: addUnit(--step_top_fb);
+          background: #ae52dd;
+        }
+        .step__front {
+          transform: rotateX(90deg) translateZ(addUnit(--step_z_fb));
+        }
+        .step__back {
+          transform: rotateX(-90deg) translateZ(addUnit(--step_z_fb));
+        }
+
+        .step__left,
+        .step__right {
+          width: addUnit(--step_height);
+          height: addUnit(--step_depth);
+          background: #a54bcf;
+        }
+        .step__left {
+          left: calc(-1 * addUnit(--step-z-center));
+          transform: rotateY(-90deg);
+        }
+        .step__right {
+          left: calc(100% - addUnit(--step-z-center));
+          transform: rotateY(90deg);
+        }
+      }
+    }
+
+    .stair-step-small {
+      width: 90px;
+    }
+  }
 }
 
 .stairs {
-	margin-left: 400px;
+  margin-left: 400px;
   position: relative;
   width: 500px;
   height: 300px;
