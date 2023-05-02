@@ -8,7 +8,7 @@ import { Component } from '@angular/core';
 export class AppComponent {
   title = '3D Training Room';
 
-  scale = 1 / 10;
+  scale = 1 / 20;
   face_list = ['top', 'bottom', 'front', 'back', 'left', 'right'];
 
   // Room Detail
@@ -26,7 +26,7 @@ export class AppComponent {
   wall_thick = 2;
 
   // Stair Detail
-  stair_sm_width = 90;
+  stair_sm_width = 900 * this.scale;
   step_sm_num = 14;
   step_sm_size = {
     height: 180 * this.scale,
@@ -50,6 +50,19 @@ export class AppComponent {
   step_bg_2_sm_top = '#585855';
   step_bg_2_sm_left = '#262727';
   step_bg_2_sm_front = '#1E1F20';
+
+  // Board Detail
+  board_size = {
+    width: 3200 * this.scale,
+    height: 3000 * this.scale,
+  };
+
+  // People Detail
+  people = {
+    height_xl: 1900 * this.scale,
+    height_lg: 1800 * this.scale,
+    height_md: 800 * this.scale,
+  };
 
   constructor() {}
 

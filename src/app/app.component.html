@@ -1,173 +1,221 @@
-<div class="title">{{ title }}</div>
-<div class="btn-cont">
-  <button class="button" (click)="changeStair()">
-    Change Stair - <b>{{ stair_style }}</b>
-  </button>
+<div class="env">
+  <div class="env-left">
+    <div class="title">{{ title }}</div>
+    <div class="btn-cont">
+      <button class="button" (click)="changeStair()">
+        Change Stair - <b>{{ stair_style }}</b>
+      </button>
+    </div>
+  </div>
+
+  <div class="env-right">
+    <div
+      class="base"
+      [style.--base-width]="room.width"
+      [style.--base-depth]="room.depth"
+    >
+      <div
+        class="wall-cont"
+        [style.--wall-bg-top]="room_bg_top"
+        [style.--wall-bg-left]="room_bg_left"
+        [style.--wall-bg-front]="room_bg_front"
+      >
+        <div
+          class="wall-left"
+          [style.--wall-left-width]="wall_thick"
+          [style.--wall-left-height]="room.height"
+          [style.--wall-left-depth]="room.depth"
+          [style.--wall-left-z-center]="calcZCenter(room.height)"
+          [style.--wall-left-top-fb]="calcTop_FB(room.height, room.depth)"
+          [style.--wall-left-z-fb]="calcZ_FB(room.depth)"
+        >
+          <div
+            *ngFor="let face of face_list"
+            [class]="'face wall-left__' + face"
+          ></div>
+        </div>
+        <div
+          class="wall-back"
+          [style.--wall-back-width]="room.width"
+          [style.--wall-back-height]="room.height"
+          [style.--wall-back-depth]="wall_thick"
+          [style.--wall-back-z-center]="calcZCenter(room.height)"
+          [style.--wall-back-top-fb]="calcTop_FB(room.height, wall_thick)"
+          [style.--wall-back-z-fb]="calcZ_FB(wall_thick)"
+        >
+          <div
+            *ngFor="let face of face_list"
+            [class]="'face wall-back__' + face"
+          ></div>
+        </div>
+      </div>
+
+      <div
+        class="floor"
+        [style.--floor-width]="room.width"
+        [style.--floor-height]="wall_thick"
+        [style.--floor-depth]="room.depth"
+        [style.--floor-z-center]="calcZCenter(wall_thick)"
+        [style.--floor-top-fb]="calcTop_FB(wall_thick, room.depth)"
+        [style.--floor-z-fb]="calcZ_FB(room.depth)"
+        [style.--floor-bg-top]="room_bg_top"
+        [style.--floor-bg-left]="room_bg_left"
+        [style.--floor-bg-front]="room_bg_front"
+      >
+        <div
+          *ngFor="let face of face_list"
+          [class]="'face floor__' + face"
+        ></div>
+      </div>
+
+      <div
+        class="stair-cont stair-style-1"
+        [style.--step-bg-top]="step_bg_top"
+        [style.--step-bg-left]="step_bg_left"
+        [style.--step-bg-front]="step_bg_front"
+        *ngIf="stair_style == 1"
+      >
+        <div
+          class="stair-step stair-step-lg"
+          [style.--step-height]="step_lg_size.height"
+          [style.--step-depth]="step_lg_size.depth"
+          [style.--step-z-center]="calcZCenter(step_lg_size.height)"
+          [style.--step-top-fb]="
+            calcTop_FB(step_lg_size.height, step_lg_size.depth)
+          "
+          [style.--step-z-fb]="calcZ_FB(step_lg_size.depth)"
+        >
+          <div
+            *ngFor="let count of [].constructor(this.step_lg_num); index as i"
+            class="step"
+            [style.--step-count]="i"
+          >
+            <div
+              *ngFor="let face of face_list"
+              [class]="'face step__' + face"
+            ></div>
+          </div>
+        </div>
+        <div
+          class="stair-step stair-step-sm"
+          [style.--step-height]="step_sm_size.height"
+          [style.--step-depth]="step_sm_size.depth"
+          [style.--step-z-center]="calcZCenter(step_sm_size.height)"
+          [style.--step-top-fb]="
+            calcTop_FB(step_sm_size.height, step_sm_size.depth)
+          "
+          [style.--step-z-fb]="calcZ_FB(step_sm_size.depth)"
+          [style.--stair-sm-width]="stair_sm_width"
+        >
+          <div
+            *ngFor="let count of [].constructor(this.step_sm_num); index as i"
+            class="step"
+            [style.--step-count]="i"
+          >
+            <div
+              *ngFor="let face of face_list"
+              [class]="'face step__' + face"
+            ></div>
+          </div>
+        </div>
+      </div>
+
+      <div
+        class="stair-cont stair-style-2"
+        [style.--step-bg-top]="step_bg_2_top"
+        [style.--step-bg-left]="step_bg_2_left"
+        [style.--step-bg-front]="step_bg_2_front"
+        [style.--step-bg-sm-top]="step_bg_2_sm_top"
+        [style.--step-bg-sm-left]="step_bg_2_sm_left"
+        [style.--step-bg-sm-front]="step_bg_2_sm_front"
+        *ngIf="stair_style == 2"
+      >
+        <div
+          class="stair-step stair-step-lg"
+          [style.--step-height]="step_lg_size.height"
+          [style.--step-depth]="step_lg_size.depth"
+          [style.--step-z-center]="calcZCenter(step_lg_size.height)"
+          [style.--step-top-fb]="
+            calcTop_FB(step_lg_size.height, step_lg_size.depth)
+          "
+          [style.--step-z-fb]="calcZ_FB(step_lg_size.depth)"
+        >
+          <div
+            *ngFor="let count of [].constructor(this.step_lg_num); index as i"
+            class="step"
+            [style.--step-count]="i"
+          >
+            <div
+              *ngFor="let face of face_list"
+              [class]="'face step__' + face"
+            ></div>
+          </div>
+        </div>
+        <div
+          class="stair-step stair-step-sm"
+          [style.--step-height]="step_sm_size.height"
+          [style.--step-depth]="step_sm_size.depth"
+          [style.--step-z-center]="calcZCenter(step_sm_size.height)"
+          [style.--step-top-fb]="
+            calcTop_FB(step_sm_size.height, step_sm_size.depth)
+          "
+          [style.--step-z-fb]="calcZ_FB(step_sm_size.depth)"
+          [style.--stair-sm-width]="stair_sm_width"
+        >
+          <div
+            *ngFor="let count of [].constructor(this.step_sm_num); index as i"
+            class="step"
+            [style.--step-count]="i"
+          >
+            <div
+              *ngFor="let face of face_list"
+              [class]="'face step__' + face"
+            ></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="board-cont">
+        <div
+          class="board"
+          [style.--board-width]="board_size.width"
+          [style.--board-height]="board_size.height"
+          [style.--board-depth]="wall_thick"
+          [style.--board-z-center]="calcZCenter(board_size.height)"
+          [style.--board-top-fb]="calcTop_FB(board_size.height, wall_thick)"
+          [style.--board-z-fb]="calcZ_FB(wall_thick)"
+          [style.--board-bg-top]="room_bg_top"
+          [style.--board-bg-left]="room_bg_left"
+          [style.--board-bg-front]="room_bg_front"
+        >
+          <div
+            *ngFor="let face of face_list"
+            [class]="'face board__' + face"
+          ></div>
+        </div>
+      </div>
+
+      <div class="people" [style.--height]="people.height_xl">
+        <img src="assets/people_praise.png" alt="" />
+      </div>
+    </div>
+  </div>
 </div>
 
-<div
-  class="base"
-  [style.--base-width]="room.width"
-  [style.--base-depth]="room.depth"
->
-  <div
-    class="wall-cont"
-    [style.--wall-bg-top]="room_bg_top"
-    [style.--wall-bg-left]="room_bg_left"
-    [style.--wall-bg-front]="room_bg_front"
-  >
-    <div
-      class="wall-left"
-      [style.--wall-left-width]="wall_thick"
-      [style.--wall-left-height]="room.height"
-      [style.--wall-left-depth]="room.depth"
-      [style.--wall-left-z-center]="calcZCenter(room.height)"
-      [style.--wall-left-top-fb]="calcTop_FB(room.height, room.depth)"
-      [style.--wall-left-z-fb]="calcZ_FB(room.depth)"
+<!-- <div
+      class="room"
+      [style.--room-width]="room.width"
+      [style.--room-height]="room.height"
+      [style.--room-depth]="room.depth"
+      [style.--room-z-center]="calcZCenter(room.height)"
+      [style.--room-top-fb]="calcTop_FB(room.height, room.depth)"
+      [style.--room-z-fb]="calcZ_FB(room.depth)"
+      [style.--room-bg-top]="room_bg_top"
+      [style.--room-bg-left]="room_bg_left"
+      [style.--room-bg-front]="room_bg_front"
     >
-      <div
-        *ngFor="let face of face_list"
-        [class]="'face wall-left__' + face"
-      ></div>
-    </div>
-    <div
-      class="wall-back"
-      [style.--wall-back-width]="room.width"
-      [style.--wall-back-height]="room.height"
-      [style.--wall-back-depth]="wall_thick"
-      [style.--wall-back-z-center]="calcZCenter(room.height)"
-      [style.--wall-back-top-fb]="calcTop_FB(room.height, wall_thick)"
-      [style.--wall-back-z-fb]="calcZ_FB(wall_thick)"
-    >
-      <div
-        *ngFor="let face of face_list"
-        [class]="'face wall-back__' + face"
-      ></div>
-    </div>
-  </div>
-
-  <!-- <div
-    class="room"
-    [style.--room-width]="room.width"
-    [style.--room-height]="room.height"
-    [style.--room-depth]="room.depth"
-    [style.--room-z-center]="calcZCenter(room.height)"
-    [style.--room-top-fb]="calcTop_FB(room.height, room.depth)"
-    [style.--room-z-fb]="calcZ_FB(room.depth)"
-    [style.--room-bg-top]="room_bg_top"
-    [style.--room-bg-left]="room_bg_left"
-    [style.--room-bg-front]="room_bg_front"
-  >
-    <div *ngFor="let face of face_list" [class]="'face room__' + face"></div>
-  </div> -->
-
-  <div
-    class="stair-cont stair-style-1"
-    [style.--step-bg-top]="step_bg_top"
-    [style.--step-bg-left]="step_bg_left"
-    [style.--step-bg-front]="step_bg_front"
-    *ngIf="stair_style == 1"
-  >
-    <div
-      class="stair-step stair-step-lg"
-      [style.--step-height]="step_lg_size.height"
-      [style.--step-depth]="step_lg_size.depth"
-      [style.--step-z-center]="calcZCenter(step_lg_size.height)"
-      [style.--step-top-fb]="
-        calcTop_FB(step_lg_size.height, step_lg_size.depth)
-      "
-      [style.--step-z-fb]="calcZ_FB(step_lg_size.depth)"
-    >
-      <div
-        *ngFor="let count of [].constructor(this.step_lg_num); index as i"
-        class="step"
-        [style.--step-count]="i"
-      >
-        <div
-          *ngFor="let face of face_list"
-          [class]="'face step__' + face"
-        ></div>
-      </div>
-    </div>
-    <div
-      class="stair-step stair-step-sm"
-      [style.--step-height]="step_sm_size.height"
-      [style.--step-depth]="step_sm_size.depth"
-      [style.--step-z-center]="calcZCenter(step_sm_size.height)"
-      [style.--step-top-fb]="
-        calcTop_FB(step_sm_size.height, step_sm_size.depth)
-      "
-      [style.--step-z-fb]="calcZ_FB(step_sm_size.depth)"
-      [style.--stair-sm-width]="stair_sm_width"
-    >
-      <div
-        *ngFor="let count of [].constructor(this.step_sm_num); index as i"
-        class="step"
-        [style.--step-count]="i"
-      >
-        <div
-          *ngFor="let face of face_list"
-          [class]="'face step__' + face"
-        ></div>
-      </div>
-    </div>
-  </div>
-
-  <div
-    class="stair-cont stair-style-2"
-    [style.--step-bg-top]="step_bg_2_top"
-    [style.--step-bg-left]="step_bg_2_left"
-    [style.--step-bg-front]="step_bg_2_front"
-    [style.--step-bg-sm-top]="step_bg_2_sm_top"
-    [style.--step-bg-sm-left]="step_bg_2_sm_left"
-    [style.--step-bg-sm-front]="step_bg_2_sm_front"
-    *ngIf="stair_style == 2"
-  >
-    <div
-      class="stair-step stair-step-lg"
-      [style.--step-height]="step_lg_size.height"
-      [style.--step-depth]="step_lg_size.depth"
-      [style.--step-z-center]="calcZCenter(step_lg_size.height)"
-      [style.--step-top-fb]="
-        calcTop_FB(step_lg_size.height, step_lg_size.depth)
-      "
-      [style.--step-z-fb]="calcZ_FB(step_lg_size.depth)"
-    >
-      <div
-        *ngFor="let count of [].constructor(this.step_lg_num); index as i"
-        class="step"
-        [style.--step-count]="i"
-      >
-        <div
-          *ngFor="let face of face_list"
-          [class]="'face step__' + face"
-        ></div>
-      </div>
-    </div>
-    <div
-      class="stair-step stair-step-sm"
-      [style.--step-height]="step_sm_size.height"
-      [style.--step-depth]="step_sm_size.depth"
-      [style.--step-z-center]="calcZCenter(step_sm_size.height)"
-      [style.--step-top-fb]="
-        calcTop_FB(step_sm_size.height, step_sm_size.depth)
-      "
-      [style.--step-z-fb]="calcZ_FB(step_sm_size.depth)"
-      [style.--stair-sm-width]="stair_sm_width"
-    >
-      <div
-        *ngFor="let count of [].constructor(this.step_sm_num); index as i"
-        class="step"
-        [style.--step-count]="i"
-      >
-        <div
-          *ngFor="let face of face_list"
-          [class]="'face step__' + face"
-        ></div>
-      </div>
-    </div>
-  </div>
-</div>
+      <div *ngFor="let face of face_list" [class]="'face room__' + face"></div>
+    </div> -->
 
 <!-- <div class="stairs">
   <div class="base"></div>
