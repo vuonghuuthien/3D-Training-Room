@@ -161,7 +161,7 @@
                 [class]="'face step-top__' + face"
               ></div>
               <div
-                class="seat-cushion"
+                class="seat-cushion" [class.seat-cushion-last]="i + 1 == this.step_lg_num"
                 [style.--seat-cushion-width]="seat_cushion_size.width"
                 [style.--seat-cushion-height]="seat_cushion_size.height"
                 [style.--seat-cushion-depth]="seat_cushion_size.depth"
@@ -183,12 +183,103 @@
                 ></div>
               </div>
 
-              <div *ngIf="i == 3" class="people people_guitarist" [style.--height]="people.height_md">
+              <div
+                *ngIf="i == 3"
+                class="people people_guitarist"
+                [style.--height]="people.height_md"
+              >
                 <img src="assets/people_guitarist.png" alt="" />
               </div>
 
-              <div *ngIf="i == 4" class="people people_laptop" [style.--height]="people.height_lg">
+              <div
+                *ngIf="i == 4"
+                class="people people_laptop"
+                [style.--height]="people.height_lg"
+              >
                 <img src="assets/people_laptop.png" alt="" />
+              </div>
+
+              <div
+                *ngIf="i == 0"
+                class="table-mini"
+                [style.--table-mini-width]="table_mini_size.width"
+                [style.--table-mini-height]="table_mini_size.height"
+                [style.--table-mini-depth]="table_mini_size.depth"
+                [style.--table-mini-thick]="table_mini_size.thick"
+                [style.--table-mini-bg-top]="table_mini_bg_top"
+                [style.--table-mini-bg-left]="table_mini_bg_left"
+                [style.--table-mini-bg-front]="table_mini_bg_front"
+              >
+                <div
+                  class="table-mini-top"
+                  [style.--table-mini-top-width]="table_mini_size.width"
+                  [style.--table-mini-top-height]="table_mini_size.thick"
+                  [style.--table-mini-top-depth]="table_mini_size.depth"
+                  [style.--table-mini-top-z-center]="
+                    calcZCenter(table_mini_size.thick)
+                  "
+                  [style.--table-mini-top-top-fb]="
+                    calcTop_FB(table_mini_size.thick, table_mini_size.depth)
+                  "
+                  [style.--table-mini-top-z-fb]="
+                    calcZ_FB(table_mini_size.depth)
+                  "
+                >
+                  <div
+                    *ngFor="let face of face_list"
+                    [class]="'face table-mini-top__' + face"
+                  ></div>
+                </div>
+                <div
+                  *ngFor="let count of [].constructor(2); index as i"
+                  class="table-mini-front"
+                  [class]="'table-mini-front-' + (i + 1)"
+                  [style.--table-mini-front-width]="table_mini_size.border"
+                  [style.--table-mini-front-height]="table_mini_size.height"
+                  [style.--table-mini-front-depth]="table_mini_size.thick"
+                  [style.--table-mini-front-z-center]="
+                    calcZCenter(table_mini_size.height)
+                  "
+                  [style.--table-mini-front-top-fb]="
+                    calcTop_FB(table_mini_size.height, table_mini_size.thick)
+                  "
+                  [style.--table-mini-front-z-fb]="
+                    calcZ_FB(table_mini_size.thick)
+                  "
+                >
+                  <div
+                    *ngFor="let face of face_list"
+                    [class]="'face table-mini-front__' + face"
+                  ></div>
+                </div>
+                <div
+                  *ngFor="let count of [].constructor(2); index as i"
+                  class="table-mini-back"
+                  [class]="'table-mini-back-' + (i + 1)"
+                  [style.--table-mini-back-width]="table_mini_size.border"
+                  [style.--table-mini-back-height]="table_mini_size.height_back"
+                  [style.--table-mini-back-height-than]="
+                    table_mini_size.height - table_mini_size.height_back
+                  "
+                  [style.--table-mini-back-depth]="table_mini_size.thick"
+                  [style.--table-mini-back-z-center]="
+                    calcZCenter(table_mini_size.height_back)
+                  "
+                  [style.--table-mini-back-top-fb]="
+                    calcTop_FB(
+                      table_mini_size.height_back,
+                      table_mini_size.thick
+                    )
+                  "
+                  [style.--table-mini-back-z-fb]="
+                    calcZ_FB(table_mini_size.thick)
+                  "
+                >
+                  <div
+                    *ngFor="let face of face_list"
+                    [class]="'face table-mini-back__' + face"
+                  ></div>
+                </div>
               </div>
             </div>
             <div
@@ -255,54 +346,6 @@
       <div class="people people_praise" [style.--height]="people.height_xl">
         <img src="assets/people_praise.png" alt="" />
       </div>
-
-      <div
-        class="table-mini"
-        [style.--table-mini-width]="seat_cushion_size.width"
-        [style.--table-mini-height]="seat_cushion_size.height"
-        [style.--table-mini-depth]="seat_cushion_size.depth"
-        [style.--table-mini-space]="seat_cushion_size.space"
-        [style.--table-mini-z-center]="calcZCenter(seat_cushion_size.height)"
-        [style.--table-mini-top-fb]="
-          calcTop_FB(seat_cushion_size.height, seat_cushion_size.depth)
-        "
-        [style.--table-mini-z-fb]="calcZ_FB(seat_cushion_size.depth)"
-        [style.--table-mini-bg-top]="seat_cushion_bg_top"
-        [style.--table-mini-bg-left]="seat_cushion_bg_left"
-        [style.--table-mini-bg-front]="seat_cushion_bg_front"
-      >
-        <div
-          *ngFor="let face of face_list"
-          [class]="'face table-mini__' + face"
-        ></div>
-      </div>
     </div>
   </div>
 </div>
-
-<!-- <div
-      class="room"
-      [style.--room-width]="room.width"
-      [style.--room-height]="room.height"
-      [style.--room-depth]="room.depth"
-      [style.--room-z-center]="calcZCenter(room.height)"
-      [style.--room-top-fb]="calcTop_FB(room.height, room.depth)"
-      [style.--room-z-fb]="calcZ_FB(room.depth)"
-      [style.--room-bg-top]="room_bg_top"
-      [style.--room-bg-left]="room_bg_left"
-      [style.--room-bg-front]="room_bg_front"
-    >
-      <div *ngFor="let face of face_list" [class]="'face room__' + face"></div>
-    </div> -->
-
-<!-- <div class="stairs">
-  <div class="base"></div>
-  <div
-    class="step"
-    [style.--i]="i + 1"
-    *ngFor="let step of [].constructor(this.step_lg_num); index as i"
-  >
-    <i></i>
-    <i></i>
-  </div>
-</div> -->

@@ -28,7 +28,7 @@ export class AppComponent {
   // Stair Detail
   step_sm_num = 12;
   step_sm_size = {
-    width: 900 * this.scale,
+    width: 600 * this.scale,
     height: 180 * this.scale,
     depth: 280 * this.scale,
   };
@@ -70,7 +70,7 @@ export class AppComponent {
 
   // Seat Cushion Detail
   seat_cushion_size = {
-    width: 2500 * this.scale,
+    width: 2800 * this.scale,
     height: 30 * this.scale,
     depth: 260 * this.scale,
     space: 100 * this.scale,
@@ -79,6 +79,32 @@ export class AppComponent {
   seat_cushion_bg_top = '#FFFFFF';
   seat_cushion_bg_left = '#FB6514';
   seat_cushion_bg_front = '#EC4A0A';
+
+  // Table Mini Detail
+  table_mini_size = {
+    width: 400 * this.scale,
+    height: 600 * this.scale,
+    height_back: 280 * this.scale,
+    depth: 600 * this.scale,
+    thick: 20 * this.scale,
+    border: 20 * this.scale,
+  };
+  // Table Mini Style
+  table_mini_bg_top = 'rgba(64,192,87, 0.5)';
+  table_mini_bg_left = '#2F9E44';
+  table_mini_bg_front = '#2B8A3E';
+
+  // Cabinet Detail
+  cabinet_size = {
+    width: 200 * this.scale,
+    height: 300 * this.scale,
+    depth: 260 * this.scale,
+    thick: 20 * this.scale,
+  };
+  // Seat Cushion Style
+  cabinet_bg_top = '#FFFFFF';
+  cabinet_bg_left = '#FB6514';
+  cabinet_bg_front = '#EC4A0A';
 
   constructor() {}
 
