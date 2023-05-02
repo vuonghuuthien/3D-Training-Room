@@ -105,7 +105,7 @@
             calcTop_FB(step_sm_size.height, step_sm_size.depth)
           "
           [style.--step-z-fb]="calcZ_FB(step_sm_size.depth)"
-          [style.--stair-sm-width]="stair_sm_width"
+          [style.--stair-sm-width]="step_sm_size.width"
         >
           <div
             *ngFor="let count of [].constructor(this.step_sm_num); index as i"
@@ -161,9 +161,7 @@
                 [class]="'face step-top__' + face"
               ></div>
               <div
-              *ngFor="let count of [].constructor(7); index as i"
                 class="seat-cushion"
-                [style.--seat-cushion-count]="i"
                 [style.--seat-cushion-width]="seat_cushion_size.width"
                 [style.--seat-cushion-height]="seat_cushion_size.height"
                 [style.--seat-cushion-depth]="seat_cushion_size.depth"
@@ -184,6 +182,14 @@
                   [class]="'face seat-cushion__' + face"
                 ></div>
               </div>
+
+              <div *ngIf="i == 3" class="people people_guitarist" [style.--height]="people.height_md">
+                <img src="assets/people_guitarist.png" alt="" />
+              </div>
+
+              <div *ngIf="i == 4" class="people people_laptop" [style.--height]="people.height_lg">
+                <img src="assets/people_laptop.png" alt="" />
+              </div>
             </div>
             <div
               class="step-front"
@@ -200,10 +206,6 @@
                 [class]="'face step-front__' + face"
               ></div>
             </div>
-            <!-- <div
-              *ngFor="let face of face_list"
-              [class]="'face step__' + face"
-            ></div> -->
           </div>
         </div>
         <div
@@ -215,7 +217,7 @@
             calcTop_FB(step_sm_size.height, step_sm_size.depth)
           "
           [style.--step-z-fb]="calcZ_FB(step_sm_size.depth)"
-          [style.--stair-sm-width]="stair_sm_width"
+          [style.--stair-sm-width]="step_sm_size.width"
         >
           <div
             *ngFor="let count of [].constructor(this.step_sm_num); index as i"
@@ -250,8 +252,29 @@
         </div>
       </div>
 
-      <div class="people" [style.--height]="people.height_xl">
+      <div class="people people_praise" [style.--height]="people.height_xl">
         <img src="assets/people_praise.png" alt="" />
+      </div>
+
+      <div
+        class="table-mini"
+        [style.--table-mini-width]="seat_cushion_size.width"
+        [style.--table-mini-height]="seat_cushion_size.height"
+        [style.--table-mini-depth]="seat_cushion_size.depth"
+        [style.--table-mini-space]="seat_cushion_size.space"
+        [style.--table-mini-z-center]="calcZCenter(seat_cushion_size.height)"
+        [style.--table-mini-top-fb]="
+          calcTop_FB(seat_cushion_size.height, seat_cushion_size.depth)
+        "
+        [style.--table-mini-z-fb]="calcZ_FB(seat_cushion_size.depth)"
+        [style.--table-mini-bg-top]="seat_cushion_bg_top"
+        [style.--table-mini-bg-left]="seat_cushion_bg_left"
+        [style.--table-mini-bg-front]="seat_cushion_bg_front"
+      >
+        <div
+          *ngFor="let face of face_list"
+          [class]="'face table-mini__' + face"
+        ></div>
       </div>
     </div>
   </div>

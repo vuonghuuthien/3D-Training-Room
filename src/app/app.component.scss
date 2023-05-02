@@ -67,6 +67,10 @@
   transform: rotateX(-90deg) translateY(calc($height / 2 * -1));
 }
 
+@mixin img_y_z($y, $z) {
+  transform: rotateX(-90deg) translateY($y) translateZ($z);
+}
+
 .env {
   display: flex;
   min-height: 100vh;
@@ -383,13 +387,27 @@
 .people {
   height: addUnit(--height);
   width: fit-content;
-  top: 75%;
-  left: 60%;
+  top: 0;
+  left: 0;
   position: absolute;
   @include img(addUnit(--height));
   img {
     height: 100%;
     width: fit-content;
+  }
+
+  &.people_praise {
+    top: 75%;
+    left: 60%;
+  }
+
+  &.people_guitarist {
+    left: 40%;
+    @include img_y_z(-8px, 1px);
+  }
+
+  &.people_laptop {
+    top: -130%;
   }
 }
 
@@ -397,11 +415,8 @@
   width: addUnit(--seat-cushion-width);
   height: addUnit(--seat-cushion-depth);
   transform: translateZ(addUnit(--seat-cushion-z-center));
-  top: 50%;
-  left: calc(
-    (addUnit(--seat-cushion-width) + addUnit(--seat-cushion-space)) *
-      var(--seat-cushion-count) + addUnit(--seat-cushion-space)
-  );
+  top: calc(100% - addUnit(--seat-cushion-depth));
+  left: addUnit(--seat-cushion-space);
   position: absolute;
 
   @include face_list(

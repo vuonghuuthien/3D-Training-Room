@@ -26,9 +26,9 @@ export class AppComponent {
   wall_thick = 40 * this.scale;
 
   // Stair Detail
-  stair_sm_width = 900 * this.scale;
-  step_sm_num = 14;
+  step_sm_num = 12;
   step_sm_size = {
+    width: 900 * this.scale,
     height: 180 * this.scale,
     depth: 280 * this.scale,
   };
@@ -65,14 +65,14 @@ export class AppComponent {
   people = {
     height_xl: 1900 * this.scale,
     height_lg: 1800 * this.scale,
-    height_md: 800 * this.scale,
+    height_md: 1150 * this.scale,
   };
 
   // Seat Cushion Detail
   seat_cushion_size = {
-    width: 400 * this.scale,
+    width: 2500 * this.scale,
     height: 30 * this.scale,
-    depth: 280 * this.scale,
+    depth: 260 * this.scale,
     space: 100 * this.scale,
   };
   // Seat Cushion Style
