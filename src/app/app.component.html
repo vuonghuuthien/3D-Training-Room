@@ -151,20 +151,48 @@
               [style.--step-top-height]="step_thick"
               [style.--step-top-depth]="step_lg_size.depth"
               [style.--step-top-z-center]="calcZCenter(step_thick)"
-              [style.--step-top-top-fb]="calcTop_FB(step_thick, step_lg_size.depth)"
+              [style.--step-top-top-fb]="
+                calcTop_FB(step_thick, step_lg_size.depth)
+              "
               [style.--step-top-z-fb]="calcZ_FB(step_lg_size.depth)"
             >
               <div
                 *ngFor="let face of face_list"
                 [class]="'face step-top__' + face"
               ></div>
+              <div
+              *ngFor="let count of [].constructor(7); index as i"
+                class="seat-cushion"
+                [style.--seat-cushion-count]="i"
+                [style.--seat-cushion-width]="seat_cushion_size.width"
+                [style.--seat-cushion-height]="seat_cushion_size.height"
+                [style.--seat-cushion-depth]="seat_cushion_size.depth"
+                [style.--seat-cushion-space]="seat_cushion_size.space"
+                [style.--seat-cushion-z-center]="
+                  calcZCenter(seat_cushion_size.height)
+                "
+                [style.--seat-cushion-top-fb]="
+                  calcTop_FB(seat_cushion_size.height, seat_cushion_size.depth)
+                "
+                [style.--seat-cushion-z-fb]="calcZ_FB(seat_cushion_size.depth)"
+                [style.--seat-cushion-bg-top]="seat_cushion_bg_top"
+                [style.--seat-cushion-bg-left]="seat_cushion_bg_left"
+                [style.--seat-cushion-bg-front]="seat_cushion_bg_front"
+              >
+                <div
+                  *ngFor="let face of face_list"
+                  [class]="'face seat-cushion__' + face"
+                ></div>
+              </div>
             </div>
             <div
               class="step-front"
               [style.--step-front-height]="step_lg_size.height"
               [style.--step-front-depth]="step_thick"
               [style.--step-front-z-center]="calcZCenter(step_lg_size.height)"
-              [style.--step-front-top-fb]="calcTop_FB(step_lg_size.height, step_thick)"
+              [style.--step-front-top-fb]="
+                calcTop_FB(step_lg_size.height, step_thick)
+              "
               [style.--step-front-z-fb]="calcZ_FB(step_thick)"
             >
               <div

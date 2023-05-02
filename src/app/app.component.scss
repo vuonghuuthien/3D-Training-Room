@@ -118,7 +118,7 @@
   height: addUnit(--base-depth);
   transform: perspective(500px) rotateX(70deg) rotateZ(50deg) translateX(100px)
     translateZ(-50px);
-  transform: perspective(500px) rotateX(70deg) rotateZ(135deg) translateX(100px) translateZ(-50px);
+  // transform: perspective(500px) rotateX(70deg) rotateZ(135deg) translateX(100px) translateZ(-50px);
   position: relative;
   // transform: rotateX(-30deg) rotateY(250deg);
   // animation: animate 10s linear infinite;
@@ -391,6 +391,33 @@
     height: 100%;
     width: fit-content;
   }
+}
+
+.seat-cushion {
+  width: addUnit(--seat-cushion-width);
+  height: addUnit(--seat-cushion-depth);
+  transform: translateZ(addUnit(--seat-cushion-z-center));
+  top: 50%;
+  left: calc(
+    (addUnit(--seat-cushion-width) + addUnit(--seat-cushion-space)) *
+      var(--seat-cushion-count) + addUnit(--seat-cushion-space)
+  );
+  position: absolute;
+
+  @include face_list(
+    ".seat-cushion",
+    addUnit(--seat-cushion-height),
+    addUnit(--seat-cushion-depth),
+    addUnit(--seat-cushion-z-center),
+    addUnit(--seat-cushion-top-fb),
+    addUnit(--seat-cushion-z-fb),
+    var(--seat-cushion-bg-top),
+    var(--seat-cushion-bg-top),
+    var(--seat-cushion-bg-front),
+    var(--seat-cushion-bg-front),
+    var(--seat-cushion-bg-left),
+    var(--seat-cushion-bg-left)
+  );
 }
 
 // .stairs {

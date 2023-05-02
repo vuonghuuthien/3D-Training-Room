@@ -37,7 +37,7 @@ export class AppComponent {
     height: 180 * 2 * this.scale,
     depth: 280 * 2 * this.scale,
   };
-  step_thick = 30 * this.scale;
+  step_thick = 20 * this.scale;
   // Stair Style
   stair_style = 2;
   // Stair Style 1
@@ -67,6 +67,18 @@ export class AppComponent {
     height_lg: 1800 * this.scale,
     height_md: 800 * this.scale,
   };
+
+  // Seat Cushion Detail
+  seat_cushion_size = {
+    width: 400 * this.scale,
+    height: 30 * this.scale,
+    depth: 280 * this.scale,
+    space: 100 * this.scale,
+  };
+  // Seat Cushion Style
+  seat_cushion_bg_top = '#FFFFFF';
+  seat_cushion_bg_left = '#FB6514';
+  seat_cushion_bg_front = '#EC4A0A';
 
   constructor() {}
 
