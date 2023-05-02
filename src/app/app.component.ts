@@ -23,7 +23,7 @@ export class AppComponent {
   room_bg_front = '#D6D6D6';
 
   // Wall Detail
-  wall_thick = 2;
+  wall_thick = 40 * this.scale;
 
   // Stair Detail
   stair_sm_width = 900 * this.scale;
@@ -37,6 +37,7 @@ export class AppComponent {
     height: 180 * 2 * this.scale,
     depth: 280 * 2 * this.scale,
   };
+  step_thick = 30 * this.scale;
   // Stair Style
   stair_style = 2;
   // Stair Style 1
@@ -47,9 +48,12 @@ export class AppComponent {
   step_bg_2_top = '#FCFCFC';
   step_bg_2_left = '#E8E8E8';
   step_bg_2_front = '#D6D6D6';
-  step_bg_2_sm_top = '#585855';
-  step_bg_2_sm_left = '#262727';
-  step_bg_2_sm_front = '#1E1F20';
+  // step_bg_2_sm_top = '#585855';
+  // step_bg_2_sm_left = '#262727';
+  // step_bg_2_sm_front = '#1E1F20';
+  step_bg_2_sm_top = '#559cfd';
+  step_bg_2_sm_left = '#2b83fc';
+  step_bg_2_sm_front = '#2269ca';
 
   // Board Detail
   board_size = {

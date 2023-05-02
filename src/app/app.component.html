@@ -67,7 +67,7 @@
           [class]="'face floor__' + face"
         ></div>
       </div>
-
+      <!-- Stair Style 1 -->
       <div
         class="stair-cont stair-style-1"
         [style.--step-bg-top]="step_bg_top"
@@ -119,9 +119,10 @@
           </div>
         </div>
       </div>
-
+      <!-- Stair Style 2 -->
       <div
         class="stair-cont stair-style-2"
+        [style.--step-thick]="step_thick"
         [style.--step-bg-top]="step_bg_2_top"
         [style.--step-bg-left]="step_bg_2_left"
         [style.--step-bg-front]="step_bg_2_front"
@@ -146,9 +147,35 @@
             [style.--step-count]="i"
           >
             <div
+              class="step-top"
+              [style.--step-top-height]="step_thick"
+              [style.--step-top-depth]="step_lg_size.depth"
+              [style.--step-top-z-center]="calcZCenter(step_thick)"
+              [style.--step-top-top-fb]="calcTop_FB(step_thick, step_lg_size.depth)"
+              [style.--step-top-z-fb]="calcZ_FB(step_lg_size.depth)"
+            >
+              <div
+                *ngFor="let face of face_list"
+                [class]="'face step-top__' + face"
+              ></div>
+            </div>
+            <div
+              class="step-front"
+              [style.--step-front-height]="step_lg_size.height"
+              [style.--step-front-depth]="step_thick"
+              [style.--step-front-z-center]="calcZCenter(step_lg_size.height)"
+              [style.--step-front-top-fb]="calcTop_FB(step_lg_size.height, step_thick)"
+              [style.--step-front-z-fb]="calcZ_FB(step_thick)"
+            >
+              <div
+                *ngFor="let face of face_list"
+                [class]="'face step-front__' + face"
+              ></div>
+            </div>
+            <!-- <div
               *ngFor="let face of face_list"
               [class]="'face step__' + face"
-            ></div>
+            ></div> -->
           </div>
         </div>
         <div

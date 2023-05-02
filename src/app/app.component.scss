@@ -70,7 +70,7 @@
 .env {
   display: flex;
   min-height: 100vh;
-  background: radial-gradient(#56CCF2 , #2F80ED);
+  background: radial-gradient(#56ccf2, #2f80ed);
   overflow: hidden;
 
   .env-left {
@@ -116,7 +116,8 @@
 .base {
   width: addUnit(--base-width);
   height: addUnit(--base-depth);
-  transform: perspective(500px) rotateX(70deg) rotateZ(50deg) translateX(100px) translateZ(-50px);
+  transform: perspective(500px) rotateX(70deg) rotateZ(50deg) translateX(100px)
+    translateZ(-50px);
   transform: perspective(500px) rotateX(70deg) rotateZ(135deg) translateX(100px) translateZ(-50px);
   position: relative;
   // transform: rotateX(-30deg) rotateY(250deg);
@@ -267,10 +268,66 @@
 
   &.stair-style-2 {
     .stair-step {
+      &.stair-step-lg {
+        .step {
+          transform: translateZ(
+            calc(addUnit(--step-height) * var(--step-count))
+          );
+          .step-top {
+            width: 100%;
+            height: addUnit(--step-top-depth);
+            top: 0;
+            left: 0;
+            position: absolute;
+            transform: translateZ(
+              calc(addUnit(--step-height) + addUnit(--step-top-z-center))
+            );
+
+            @include face_list(
+              ".step-top",
+              addUnit(--step-top-height),
+              addUnit(--step-top-depth),
+              addUnit(--step-top-z-center),
+              addUnit(--step-top-top-fb),
+              addUnit(--step-top-z-fb),
+              var(--step-bg-top),
+              var(--step-bg-top),
+              var(--step-bg-front),
+              var(--step-bg-front),
+              var(--step-bg-left),
+              var(--step-bg-left)
+            );
+          }
+          .step-front {
+            width: 100%;
+            height: addUnit(--step-front-depth);
+            top: 0;
+            left: 0;
+            position: absolute;
+            transform: translateY(addUnit(--step-depth))
+              translateZ(addUnit(--step-front-z-center));
+
+            @include face_list(
+              ".step-front",
+              addUnit(--step-front-height),
+              addUnit(--step-front-depth),
+              addUnit(--step-front-z-center),
+              addUnit(--step-front-top-fb),
+              addUnit(--step-front-z-fb),
+              var(--step-bg-top),
+              var(--step-bg-top),
+              var(--step-bg-front),
+              var(--step-bg-front),
+              var(--step-bg-left),
+              var(--step-bg-left)
+            );
+          }
+        }
+      }
       &.stair-step-sm {
         position: absolute;
         right: 0;
-        top: addUnit(--step-depth);
+        top: calc(addUnit(--step-depth) + addUnit(--step-thick));
         .step {
           &:nth-child(even) {
             opacity: 0;
