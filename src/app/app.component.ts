@@ -17,10 +17,6 @@ export class AppComponent {
     height: 3400 * this.scale,
     depth: 7300 * this.scale,
   };
-  // Room Style
-  room_bg_top = '#FCFCFC';
-  room_bg_left = '#E8E8E8';
-  room_bg_front = '#D6D6D6';
 
   // Wall Detail
   wall_thick = 40 * this.scale;
@@ -40,20 +36,6 @@ export class AppComponent {
   step_thick = 20 * this.scale;
   // Stair Style
   stair_style = 2;
-  // Stair Style 1
-  step_bg_top = '#FCFCFC';
-  step_bg_left = '#E8E8E8';
-  step_bg_front = '#D6D6D6';
-  // Stair Style 2
-  step_bg_2_top = '#FCFCFC';
-  step_bg_2_left = '#E8E8E8';
-  step_bg_2_front = '#D6D6D6';
-  // step_bg_2_sm_top = '#585855';
-  // step_bg_2_sm_left = '#262727';
-  // step_bg_2_sm_front = '#1E1F20';
-  step_bg_2_sm_top = '#559cfd';
-  step_bg_2_sm_left = '#2b83fc';
-  step_bg_2_sm_front = '#2269ca';
 
   // Board Detail
   board_size = {
@@ -70,15 +52,11 @@ export class AppComponent {
 
   // Seat Cushion Detail
   seat_cushion_size = {
-    width: 2800 * this.scale,
+    width: 2750 * this.scale,
     height: 30 * this.scale,
     depth: 260 * this.scale,
     space: 100 * this.scale,
   };
-  // Seat Cushion Style
-  seat_cushion_bg_top = '#FFFFFF';
-  seat_cushion_bg_left = '#FB6514';
-  seat_cushion_bg_front = '#EC4A0A';
 
   // Table Mini Detail
   table_mini_size = {
@@ -89,22 +67,15 @@ export class AppComponent {
     thick: 20 * this.scale,
     border: 20 * this.scale,
   };
-  // Table Mini Style
-  table_mini_bg_top = 'rgba(64,192,87, 0.5)';
-  table_mini_bg_left = '#2F9E44';
-  table_mini_bg_front = '#2B8A3E';
 
   // Cabinet Detail
+  cabinet_cont_start_z = this.step_lg_size.height * this.step_lg_num;
   cabinet_size = {
-    width: 200 * this.scale,
-    height: 300 * this.scale,
-    depth: 260 * this.scale,
-    thick: 20 * this.scale,
+    width: 500 * this.scale,
+    height: 1200 * this.scale,
+    depth: 280 * this.scale,
+    thick: 10 * this.scale,
   };
-  // Seat Cushion Style
-  cabinet_bg_top = '#FFFFFF';
-  cabinet_bg_left = '#FB6514';
-  cabinet_bg_front = '#EC4A0A';
 
   constructor() {}
 

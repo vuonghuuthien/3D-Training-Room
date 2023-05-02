@@ -14,12 +14,8 @@
       [style.--base-width]="room.width"
       [style.--base-depth]="room.depth"
     >
-      <div
-        class="wall-cont"
-        [style.--wall-bg-top]="room_bg_top"
-        [style.--wall-bg-left]="room_bg_left"
-        [style.--wall-bg-front]="room_bg_front"
-      >
+      <!-- Wall -->
+      <div class="wall-cont" [style.--wall-thick]="wall_thick">
         <div
           class="wall-left"
           [style.--wall-left-width]="wall_thick"
@@ -50,6 +46,7 @@
         </div>
       </div>
 
+      <!-- Floor -->
       <div
         class="floor"
         [style.--floor-width]="room.width"
@@ -58,23 +55,111 @@
         [style.--floor-z-center]="calcZCenter(wall_thick)"
         [style.--floor-top-fb]="calcTop_FB(wall_thick, room.depth)"
         [style.--floor-z-fb]="calcZ_FB(room.depth)"
-        [style.--floor-bg-top]="room_bg_top"
-        [style.--floor-bg-left]="room_bg_left"
-        [style.--floor-bg-front]="room_bg_front"
       >
         <div
           *ngFor="let face of face_list"
           [class]="'face floor__' + face"
         ></div>
       </div>
-      <!-- Stair Style 1 -->
+
+      <!-- Cabinet -->
       <div
-        class="stair-cont stair-style-1"
-        [style.--step-bg-top]="step_bg_top"
-        [style.--step-bg-left]="step_bg_left"
-        [style.--step-bg-front]="step_bg_front"
-        *ngIf="stair_style == 1"
+        class="cabinet-cont"
+        [style.--cabinet-cont-depth]="cabinet_size.depth"
+        [style.--cabinet_cont_start_z]="cabinet_cont_start_z"
+        [style.--cabinet-thick]="cabinet_size.thick"
       >
+        <div
+          class="cabinet"
+          [style.--cabinet-width]="cabinet_size.width"
+          [style.--cabinet-height]="cabinet_size.height"
+          [style.--cabinet-depth]="cabinet_size.depth"
+        >
+          <div
+            class="cabinet-top"
+            [style.--cabinet-top-width]="cabinet_size.width"
+            [style.--cabinet-top-height]="cabinet_size.thick"
+            [style.--cabinet-top-depth]="cabinet_size.depth"
+            [style.--cabinet-top-z-center]="calcZCenter(cabinet_size.thick)"
+            [style.--cabinet-top-top-fb]="
+              calcTop_FB(cabinet_size.thick, cabinet_size.depth)
+            "
+            [style.--cabinet-top-z-fb]="calcZ_FB(cabinet_size.depth)"
+          >
+            <div
+              *ngFor="let face of face_list"
+              [class]="'face cabinet-top__' + face"
+            ></div>
+          </div>
+          <div
+            class="cabinet-left"
+            [style.--cabinet-left-width]="cabinet_size.thick"
+            [style.--cabinet-left-height]="cabinet_size.height"
+            [style.--cabinet-left-depth]="cabinet_size.depth"
+            [style.--cabinet-left-z-center]="calcZCenter(cabinet_size.height)"
+            [style.--cabinet-left-top-fb]="
+              calcTop_FB(cabinet_size.height, cabinet_size.depth)
+            "
+            [style.--cabinet-left-z-fb]="calcZ_FB(cabinet_size.depth)"
+          >
+            <div
+              *ngFor="let face of face_list"
+              [class]="'face cabinet-left__' + face"
+            ></div>
+          </div>
+          <div
+            class="cabinet-right"
+            [style.--cabinet-right-width]="cabinet_size.thick"
+            [style.--cabinet-right-height]="cabinet_size.height"
+            [style.--cabinet-right-depth]="cabinet_size.depth"
+            [style.--cabinet-right-z-center]="calcZCenter(cabinet_size.height)"
+            [style.--cabinet-right-top-fb]="
+              calcTop_FB(cabinet_size.height, cabinet_size.depth)
+            "
+            [style.--cabinet-right-z-fb]="calcZ_FB(cabinet_size.depth)"
+          >
+            <div
+              *ngFor="let face of face_list"
+              [class]="'face cabinet-right__' + face"
+            ></div>
+          </div>
+          <div
+            class="cabinet-front"
+            [style.--cabinet-front-width]="cabinet_size.width"
+            [style.--cabinet-front-height]="cabinet_size.height"
+            [style.--cabinet-front-depth]="cabinet_size.thick"
+            [style.--cabinet-front-z-center]="calcZCenter(cabinet_size.height)"
+            [style.--cabinet-front-top-fb]="
+              calcTop_FB(cabinet_size.height, cabinet_size.thick)
+            "
+            [style.--cabinet-front-z-fb]="calcZ_FB(cabinet_size.thick)"
+          >
+            <div
+              *ngFor="let face of face_list"
+              [class]="'face cabinet-front__' + face"
+            ></div>
+          </div>
+          <div
+            class="cabinet-back"
+            [style.--cabinet-back-width]="cabinet_size.width"
+            [style.--cabinet-back-height]="cabinet_size.height"
+            [style.--cabinet-back-depth]="cabinet_size.thick"
+            [style.--cabinet-back-z-center]="calcZCenter(cabinet_size.height)"
+            [style.--cabinet-back-top-fb]="
+              calcTop_FB(cabinet_size.height, cabinet_size.thick)
+            "
+            [style.--cabinet-back-z-fb]="calcZ_FB(cabinet_size.thick)"
+          >
+            <div
+              *ngFor="let face of face_list"
+              [class]="'face cabinet-back__' + face"
+            ></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Stair Style 1 -->
+      <div class="stair-cont stair-style-1" *ngIf="stair_style == 1">
         <div
           class="stair-step stair-step-lg"
           [style.--step-height]="step_lg_size.height"
@@ -123,12 +208,6 @@
       <div
         class="stair-cont stair-style-2"
         [style.--step-thick]="step_thick"
-        [style.--step-bg-top]="step_bg_2_top"
-        [style.--step-bg-left]="step_bg_2_left"
-        [style.--step-bg-front]="step_bg_2_front"
-        [style.--step-bg-sm-top]="step_bg_2_sm_top"
-        [style.--step-bg-sm-left]="step_bg_2_sm_left"
-        [style.--step-bg-sm-front]="step_bg_2_sm_front"
         *ngIf="stair_style == 2"
       >
         <div
@@ -161,7 +240,8 @@
                 [class]="'face step-top__' + face"
               ></div>
               <div
-                class="seat-cushion" [class.seat-cushion-last]="i + 1 == this.step_lg_num"
+                class="seat-cushion"
+                [class.seat-cushion-last]="i + 1 == this.step_lg_num"
                 [style.--seat-cushion-width]="seat_cushion_size.width"
                 [style.--seat-cushion-height]="seat_cushion_size.height"
                 [style.--seat-cushion-depth]="seat_cushion_size.depth"
@@ -173,9 +253,6 @@
                   calcTop_FB(seat_cushion_size.height, seat_cushion_size.depth)
                 "
                 [style.--seat-cushion-z-fb]="calcZ_FB(seat_cushion_size.depth)"
-                [style.--seat-cushion-bg-top]="seat_cushion_bg_top"
-                [style.--seat-cushion-bg-left]="seat_cushion_bg_left"
-                [style.--seat-cushion-bg-front]="seat_cushion_bg_front"
               >
                 <div
                   *ngFor="let face of face_list"
@@ -206,9 +283,6 @@
                 [style.--table-mini-height]="table_mini_size.height"
                 [style.--table-mini-depth]="table_mini_size.depth"
                 [style.--table-mini-thick]="table_mini_size.thick"
-                [style.--table-mini-bg-top]="table_mini_bg_top"
-                [style.--table-mini-bg-left]="table_mini_bg_left"
-                [style.--table-mini-bg-front]="table_mini_bg_front"
               >
                 <div
                   class="table-mini-top"
@@ -323,6 +397,7 @@
         </div>
       </div>
 
+      <!-- Board -->
       <div class="board-cont">
         <div
           class="board"
@@ -332,9 +407,6 @@
           [style.--board-z-center]="calcZCenter(board_size.height)"
           [style.--board-top-fb]="calcTop_FB(board_size.height, wall_thick)"
           [style.--board-z-fb]="calcZ_FB(wall_thick)"
-          [style.--board-bg-top]="room_bg_top"
-          [style.--board-bg-left]="room_bg_left"
-          [style.--board-bg-front]="room_bg_front"
         >
           <div
             *ngFor="let face of face_list"
