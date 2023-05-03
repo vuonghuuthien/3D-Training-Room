@@ -103,8 +103,9 @@
         display: flex;
         position: absolute;
         .arrow {
-          height: 10px;
+          height: 20px;
           width: fit-content;
+          padding: 5px;
           display: flex;
           cursor: pointer;
           opacity: 0.6;
@@ -196,12 +197,12 @@
       addUnit(--wall-left-z-center),
       addUnit(--wall-left-top-fb),
       addUnit(--wall-left-z-fb),
-      var(--wall-top),
-      var(--wall-top),
-      var(--wall-front),
-      var(--wall-front),
-      var(--wall-left),
-      var(--wall-left)
+      var(--wall-bg-top),
+      var(--wall-bg-top),
+      var(--wall-bg-front),
+      var(--wall-bg-front),
+      var(--wall-bg-left),
+      var(--wall-bg-left)
     );
   }
   .wall-back {
@@ -220,12 +221,12 @@
       addUnit(--wall-back-z-center),
       addUnit(--wall-back-top-fb),
       addUnit(--wall-back-z-fb),
-      var(--wall-back-top),
-      var(--wall-back-top),
-      var(--wall-back-front),
-      var(--wall-back-front),
-      var(--wall-back-left),
-      var(--wall-back-left)
+      var(--wall-back-bg-top),
+      var(--wall-back-bg-top),
+      var(--wall-back-bg-front),
+      var(--wall-back-bg-front),
+      var(--wall-back-bg-left),
+      var(--wall-back-bg-left)
     );
   }
 }
@@ -245,19 +246,19 @@
     addUnit(--floor-z-center),
     addUnit(--floor-top-fb),
     addUnit(--floor-z-fb),
-    var(--floor-top),
-    var(--floor-top),
-    var(--floor-front),
-    var(--floor-front),
-    var(--floor-left),
-    var(--floor-left)
+    var(--floor-bg-top),
+    var(--floor-bg-top),
+    var(--floor-bg-front),
+    var(--floor-bg-front),
+    var(--floor-bg-left),
+    var(--floor-bg-left)
   );
 }
 
 .cabinet-cont {
   height: addUnit(--cabinet-cont-depth);
   width: 100%;
-  background: var(--wood-top);
+  background: var(--wood-bg-top);
   position: relative;
   transform: translateZ(addUnit(--cabinet_cont_start_z));
   .cabinet {
@@ -285,12 +286,12 @@
         addUnit(--cabinet-top-z-center),
         addUnit(--cabinet-top-top-fb),
         addUnit(--cabinet-top-z-fb),
-        var(--wood-top),
-        var(--wood-top),
-        var(--wood-front),
-        var(--wood-front),
-        var(--wood-left),
-        var(--wood-left)
+        var(--wood-bg-top),
+        var(--wood-bg-top),
+        var(--wood-bg-front),
+        var(--wood-bg-front),
+        var(--wood-bg-left),
+        var(--wood-bg-left)
       );
     }
     .cabinet-left {
@@ -308,12 +309,12 @@
         addUnit(--cabinet-left-z-center),
         addUnit(--cabinet-left-top-fb),
         addUnit(--cabinet-left-z-fb),
-        var(--wood-top),
-        var(--wood-top),
-        var(--wood-front),
-        var(--wood-front),
-        var(--wood-left),
-        var(--wood-left)
+        var(--wood-bg-top),
+        var(--wood-bg-top),
+        var(--wood-bg-front),
+        var(--wood-bg-front),
+        var(--wood-bg-left),
+        var(--wood-bg-left)
       );
     }
     .cabinet-right {
@@ -334,12 +335,12 @@
         addUnit(--cabinet-right-z-center),
         addUnit(--cabinet-right-top-fb),
         addUnit(--cabinet-right-z-fb),
-        var(--wood-top),
-        var(--wood-top),
-        var(--wood-front),
-        var(--wood-front),
-        var(--wood-left),
-        var(--wood-left)
+        var(--wood-bg-top),
+        var(--wood-bg-top),
+        var(--wood-bg-front),
+        var(--wood-bg-front),
+        var(--wood-bg-left),
+        var(--wood-bg-left)
       );
     }
     .cabinet-front {
@@ -360,12 +361,12 @@
         addUnit(--cabinet-front-z-center),
         addUnit(--cabinet-front-top-fb),
         addUnit(--cabinet-front-z-fb),
-        var(--cabinet-front-top),
-        var(--cabinet-front-top),
-        var(--cabinet-front-front),
-        var(--cabinet-front-front),
-        var(--cabinet-front-left),
-        var(--cabinet-front-left)
+        var(--cabinet-front-bg-top),
+        var(--cabinet-front-bg-top),
+        var(--cabinet-front-bg-front),
+        var(--cabinet-front-bg-front),
+        var(--cabinet-front-bg-left),
+        var(--cabinet-front-bg-left)
       );
     }
     .cabinet-back {
@@ -383,12 +384,12 @@
         addUnit(--cabinet-back-z-center),
         addUnit(--cabinet-back-top-fb),
         addUnit(--cabinet-back-z-fb),
-        var(--wood-top),
-        var(--wood-top),
-        var(--wood-front),
-        var(--wood-front),
-        var(--wood-left),
-        var(--wood-left)
+        var(--wood-bg-top),
+        var(--wood-bg-top),
+        var(--wood-bg-front),
+        var(--wood-bg-front),
+        var(--wood-bg-left),
+        var(--wood-bg-left)
       );
     }
   }
@@ -427,12 +428,12 @@
         addUnit(--step-z-center),
         addUnit(--step-top-fb),
         addUnit(--step-z-fb),
-        var(--stair-top),
-        var(--stair-top),
-        var(--stair-front),
-        var(--stair-front),
-        var(--stair-left),
-        var(--stair-left)
+        var(--stair-bg-top),
+        var(--stair-bg-top),
+        var(--stair-bg-front),
+        var(--stair-bg-front),
+        var(--stair-bg-left),
+        var(--stair-bg-left)
       );
     }
   }
@@ -461,12 +462,12 @@
               addUnit(--step-top-z-center),
               addUnit(--step-top-top-fb),
               addUnit(--step-top-z-fb),
-              var(--stair-top),
-              var(--stair-top),
-              var(--stair-front),
-              var(--stair-front),
-              var(--stair-left),
-              var(--stair-left)
+              var(--stair-bg-top),
+              var(--stair-bg-top),
+              var(--stair-bg-front),
+              var(--stair-bg-front),
+              var(--stair-bg-left),
+              var(--stair-bg-left)
             );
           }
           .step-front {
@@ -485,12 +486,12 @@
               addUnit(--step-front-z-center),
               addUnit(--step-front-top-fb),
               addUnit(--step-front-z-fb),
-              var(--stair-top),
-              var(--stair-top),
-              var(--stair-front),
-              var(--stair-front),
-              var(--stair-left),
-              var(--stair-left)
+              var(--stair-bg-top),
+              var(--stair-bg-top),
+              var(--stair-bg-front),
+              var(--stair-bg-front),
+              var(--stair-bg-left),
+              var(--stair-bg-left)
             );
           }
         }
@@ -499,6 +500,7 @@
         position: absolute;
         right: 0;
         top: calc(addUnit(--step-depth) + addUnit(--step-thick));
+        transform: translateZ(addUnit(--step-thick));
         .step {
           &:nth-child(even) {
             opacity: 0;
@@ -506,17 +508,17 @@
 
           .step__top,
           .step__bottom {
-            background: var(--stair-sm-top);
+            background: var(--stair-sm-bg-top);
           }
 
           .step__front,
           .step__back {
-            background: var(--stair-sm-front);
+            background: var(--stair-sm-bg-front);
           }
 
           .step__left,
           .step__right {
-            background: var(--stair-sm-left);
+            background: var(--stair-sm-bg-left);
           }
         }
       }
@@ -541,12 +543,12 @@
       addUnit(--board-z-center),
       addUnit(--board-top-fb),
       addUnit(--board-z-fb),
-      var(--board-top),
-      var(--board-top),
-      var(--board-front),
-      var(--board-front),
-      var(--board-left),
-      var(--board-left)
+      var(--board-bg-top),
+      var(--board-bg-top),
+      var(--board-bg-front),
+      var(--board-bg-front),
+      var(--board-bg-left),
+      var(--board-bg-left)
     );
   }
 }
@@ -597,12 +599,12 @@
     addUnit(--seat-cushion-z-center),
     addUnit(--seat-cushion-top-fb),
     addUnit(--seat-cushion-z-fb),
-    var(--seat-cushion-top),
-    var(--seat-cushion-top),
-    var(--seat-cushion-front),
-    var(--seat-cushion-front),
-    var(--seat-cushion-left),
-    var(--seat-cushion-left)
+    var(--seat-cushion-bg-top),
+    var(--seat-cushion-bg-top),
+    var(--seat-cushion-bg-front),
+    var(--seat-cushion-bg-front),
+    var(--seat-cushion-bg-left),
+    var(--seat-cushion-bg-left)
   );
 }
 
@@ -628,12 +630,12 @@
       addUnit(--table-mini-top-z-center),
       addUnit(--table-mini-top-top-fb),
       addUnit(--table-mini-top-z-fb),
-      var(--glass-green-top),
-      var(--glass-green-top),
-      var(--glass-green-front),
-      var(--glass-green-front),
-      var(--glass-green-left),
-      var(--glass-green-left)
+      var(--glass-green-bg-top),
+      var(--glass-green-bg-top),
+      var(--glass-green-bg-front),
+      var(--glass-green-bg-front),
+      var(--glass-green-bg-left),
+      var(--glass-green-bg-left)
     );
   }
   .table-mini-front {
@@ -654,12 +656,12 @@
       addUnit(--table-mini-front-z-center),
       addUnit(--table-mini-front-top-fb),
       addUnit(--table-mini-front-z-fb),
-      var(--glass-green-top),
-      var(--glass-green-top),
-      var(--glass-green-front),
-      var(--glass-green-front),
-      var(--glass-green-left),
-      var(--glass-green-left)
+      var(--glass-green-bg-top),
+      var(--glass-green-bg-top),
+      var(--glass-green-bg-front),
+      var(--glass-green-bg-front),
+      var(--glass-green-bg-left),
+      var(--glass-green-bg-left)
     );
   }
   .table-mini-back {
@@ -682,16 +684,62 @@
       addUnit(--table-mini-back-z-center),
       addUnit(--table-mini-back-top-fb),
       addUnit(--table-mini-back-z-fb),
-      var(--glass-green-top),
-      var(--glass-green-top),
-      var(--glass-green-front),
-      var(--glass-green-front),
-      var(--glass-green-left),
-      var(--glass-green-left)
+      var(--glass-green-bg-top),
+      var(--glass-green-bg-top),
+      var(--glass-green-bg-front),
+      var(--glass-green-bg-front),
+      var(--glass-green-bg-left),
+      var(--glass-green-bg-left)
     );
   }
   .table-mini-front-2,
   .table-mini-back-2 {
     left: calc(addUnit(--table-mini-width) - addUnit(--table-mini-thick));
+  }
+}
+
+.door {
+  width: addUnit(--door-width);
+  height: addUnit(--door-depth);
+  top: 0;
+  left: 0;
+  position: absolute;
+  transform: translateX(addUnit(--door-width))
+    translateZ(addUnit(--door-z-center));
+
+  @include face_list(
+    ".door",
+    addUnit(--door-height),
+    addUnit(--door-depth),
+    addUnit(--door-z-center),
+    addUnit(--door-top-fb),
+    addUnit(--door-z-fb),
+    var(--door-bg-top),
+    var(--door-bg-top),
+    var(--door-bg-front),
+    var(--door-bg-front),
+    var(--door-bg-left),
+    var(--door-bg-right)
+  );
+
+  &.door-room-1, &.door-room-2 {
+    * {
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+    }
+  }
+
+  &.door-room-1 {
+    top: auto;
+    left: auto;
+    right: 0;
+    bottom: 5%;
+  }
+
+  &.door-room-2 {
+    top: 0;
+    left: auto;
+    right: 0;
   }
 }

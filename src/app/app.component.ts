@@ -96,6 +96,13 @@ export class AppComponent implements AfterViewInit, OnInit {
     thick: 10 * this.scale,
   };
 
+  // Door Detail
+  door_size = {
+    width: 40 * this.scale,
+    height: 2000 * this.scale,
+    depth: 800 * this.scale,
+  };
+
   constructor(private _renderer: Renderer2) {}
 
   ngAfterViewInit(): void {
@@ -135,12 +142,12 @@ export class AppComponent implements AfterViewInit, OnInit {
   }
 
   rotateLeft() {
-    this.base.rotateZ += 10;
+    this.base.rotateZ -= 10;
     this.setBaseTransform();
   }
 
   rotateRight() {
-    this.base.rotateZ -= 10;
+    this.base.rotateZ += 10;
     this.setBaseTransform();
   }
 

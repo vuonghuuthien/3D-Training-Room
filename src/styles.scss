@@ -1,60 +1,65 @@
 /* You can add global styles to this file, and also import other style files */
 :root {
-  --glass-blue-top: rgba(213, 89, 207, 0.2);
-  --glass-blue-left: rgba(43, 131, 252, 0.2);
-  --glass-blue-front: rgba(34, 105, 202, 0.2);
+  --glass-blue-bg-top: rgba(213, 89, 207, 0.2);
+  --glass-blue-bg-left: rgba(43, 131, 252, 0.2);
+  --glass-blue-bg-front: rgba(34, 105, 202, 0.2);
 
-  --glass-green-top: rgba(64,192,87, 0.5);
-  --glass-green-left: #2F9E44;
-  --glass-green-front: #2B8A3E;
+  --glass-green-bg-top: rgba(64,192,87, 0.5);
+  --glass-green-bg-left: #2F9E44;
+  --glass-green-bg-front: #2B8A3E;
 
-  --light-black-top: #585855;
-  --light-black-left: #262727;
-  --light-black-front: #1E1F20;
+  --light-black-bg-top: #585855;
+  --light-black-bg-left: #262727;
+  --light-black-bg-front: #1E1F20;
 
-//   --cabinet-top: #ffffff;
-//   --cabinet-left: #f8f8f8;
-//   --cabinet-front: #f4f4f4;
+//   --cabinet-bg-top: #ffffff;
+//   --cabinet-bg-left: #f8f8f8;
+//   --cabinet-bg-front: #f4f4f4;
 
-  --cabinet-front-top: rgba(255, 255, 255, 0.4);
-  --cabinet-front-left: rgba(255, 255, 255, 0.4);
-  --cabinet-front-front: rgba(255, 255, 255, 0.4);
+  --cabinet-front-bg-top: rgba(255, 255, 255, 0.4);
+  --cabinet-front-bg-left: rgba(255, 255, 255, 0.4);
+  --cabinet-front-bg-front: rgba(255, 255, 255, 0.4);
 
-  --gray-top: #FCFCFC;
-  --gray-left: #E8E8E8;
-  --gray-front: #D6D6D6;
+  --gray-bg-top: #FCFCFC;
+  --gray-bg-left: #E8E8E8;
+  --gray-bg-front: #D6D6D6;
 
-  --wall-top: #FCFCFC;
-  --wall-left: #E8E8E8;
-  --wall-front: #D6D6D6;
+  --wall-bg-top: #FCFCFC;
+  --wall-bg-left: #E8E8E8;
+  --wall-bg-front: #D6D6D6;
 
-  --wall-back-top: #FCFCFC;
-  --wall-back-left: #E8E8E8;
-  --wall-back-front: #D6D6D6;
+  --wall-back-bg-top: #FCFCFC;
+  --wall-back-bg-left: #E8E8E8;
+  --wall-back-bg-front: #D6D6D6;
 
-  --floor-top: #FCFCFC;
-  --floor-left: #E8E8E8;
-  --floor-front: #D6D6D6;
+  --floor-bg-top: #FCFCFC;
+  --floor-bg-left: #E8E8E8;
+  --floor-bg-front: #D6D6D6;
 
-  --wood-top: #e7cfb4;
-  --wood-left: #cfbaa2;
-  --wood-front: #b8a590;
+  --wood-bg-top: #e7cfb4;
+  --wood-bg-left: #cfbaa2;
+  --wood-bg-front: #b8a590;
 
-  --board-top: #FCFCFC;
-  --board-left: #E8E8E8;
-  --board-front: #D6D6D6;
+  --board-bg-top: #FCFCFC;
+  --board-bg-left: #E8E8E8;
+  --board-bg-front: #D6D6D6;
 
-  --seat-cushion-top: #FFFFFF;
-  --seat-cushion-left: #FB6514;
-  --seat-cushion-front: #EC4A0A;
+  --seat-cushion-bg-top: #FFFFFF;
+  --seat-cushion-bg-left: #FB6514;
+  --seat-cushion-bg-front: #EC4A0A;
 
-  --stair-top: #FCFCFC;
-  --stair-left: #E8E8E8;
-  --stair-front: #D6D6D6;
+  --stair-bg-top: #FCFCFC;
+  --stair-bg-left: #E8E8E8;
+  --stair-bg-front: #D6D6D6;
 
-  --stair-sm-top: #559cfd;
-  --stair-sm-left: #2b83fc;
-  --stair-sm-front: #2269ca;
+  --stair-sm-bg-top: #559cfd;
+  --stair-sm-bg-left: #2b83fc;
+  --stair-sm-bg-front: #2269ca;
+
+  --door-bg-top: #FCFCFC;
+  --door-bg-left: url('/assets/door-1-left.png');
+  --door-bg-right: url('/assets/door-1-right.png');
+  --door-bg-front: #D6D6D6;
 }
 
 * {

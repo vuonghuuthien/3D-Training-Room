@@ -9,6 +9,7 @@
   </div>
 
   <div class="env-right">
+    <!-- Controls -->
     <div class="controls">
       <div class="control-lr">
         <div class="arrow-left arrow" (click)="rotateLeft()">
@@ -434,6 +435,24 @@
             [class]="'face board__' + face"
           ></div>
         </div>
+      </div>
+
+      <!-- Door -->
+      <div
+        *ngFor="let count of [].constructor(2); index as i"
+        class="door"
+        [class]="'door-room-' + (i + 1)"
+        [style.--door-width]="door_size.width"
+        [style.--door-height]="door_size.height"
+        [style.--door-depth]="door_size.depth"
+        [style.--door-z-center]="calcZCenter(door_size.height)"
+        [style.--door-top-fb]="calcTop_FB(door_size.height, door_size.depth)"
+        [style.--door-z-fb]="calcZ_FB(door_size.depth)"
+      >
+        <div
+          *ngFor="let face of face_list"
+          [class]="'face door__' + face"
+        ></div>
       </div>
 
       <div class="people people_praise" [style.--height]="people.height_xl">
