@@ -91,6 +91,53 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    position: relative;
+
+    .controls {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+
+      .control-lr,
+      .control-ud {
+        display: flex;
+        position: absolute;
+        .arrow {
+          height: 10px;
+          width: fit-content;
+          display: flex;
+          cursor: pointer;
+          opacity: 0.6;
+          transition: all 0.2s ease-in-out;
+          img {
+            height: 100%;
+            filter: brightness(0) invert(1);
+          }
+          &:hover {
+            opacity: 1;
+            transform: scale(1.5, 2);
+          }
+          &:first-child {
+            margin-right: 20px;
+            img {
+              transform: scaleX(-1);
+            }
+          }
+        }
+      }
+
+      .control-lr {
+        left: 85%;
+        top: 80%;
+        transform: translateX(-50%);
+      }
+
+      .control-ud {
+        left: 95%;
+        top: 50%;
+        transform: translateX(-50%) rotateZ(90deg);
+      }
+    }
   }
 }
 
@@ -120,13 +167,16 @@
 .base {
   width: addUnit(--base-width);
   height: addUnit(--base-depth);
-  transform: perspective(500px) rotateX(70deg) rotateZ(50deg) translateX(100px)
-    translateZ(-50px);
-  // transform: perspective(500px) rotateX(70deg) rotateZ(135deg) translateX(100px)
+  // transform: perspective(500px) rotateX(70deg) rotateZ(50deg) translateX(100px)
   //   translateZ(-50px);
+  transform: perspective(500px) rotateX(70deg) rotateZ(135deg) translateX(100px)
+    translateZ(-50px);
   position: relative;
   // transform: rotateX(-30deg) rotateY(250deg);
   // animation: animate 10s linear infinite;
+  transition: all 0.5s linear;
+  // margin-left: 50px;
+  // margin-top: 50px;
 }
 
 .wall-cont {
@@ -170,12 +220,12 @@
       addUnit(--wall-back-z-center),
       addUnit(--wall-back-top-fb),
       addUnit(--wall-back-z-fb),
-      var(--wall-top),
-      var(--wall-top),
-      var(--wall-front),
-      var(--wall-front),
-      var(--wall-left),
-      var(--wall-left)
+      var(--wall-back-top),
+      var(--wall-back-top),
+      var(--wall-back-front),
+      var(--wall-back-front),
+      var(--wall-back-left),
+      var(--wall-back-left)
     );
   }
 }

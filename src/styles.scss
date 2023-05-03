@@ -28,6 +28,10 @@
   --wall-left: #E8E8E8;
   --wall-front: #D6D6D6;
 
+  --wall-back-top: #FCFCFC;
+  --wall-back-left: #E8E8E8;
+  --wall-back-front: #D6D6D6;
+
   --floor-top: #FCFCFC;
   --floor-left: #E8E8E8;
   --floor-front: #D6D6D6;
@@ -63,4 +67,14 @@
 
 .face {
   position: absolute;
+}
+
+.hide {
+  opacity: 0;
+  user-select: none;
+}
+
+.show {
+  opacity: 1;
+  user-select: all;
 }

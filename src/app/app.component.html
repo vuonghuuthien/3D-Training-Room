@@ -9,7 +9,26 @@
   </div>
 
   <div class="env-right">
+    <div class="controls">
+      <div class="control-lr">
+        <div class="arrow-left arrow" (click)="rotateLeft()">
+          <img src="assets/arrow.png" alt="" />
+        </div>
+        <div class="arrow-right arrow" (click)="rotateRight()">
+          <img src="assets/arrow.png" alt="" />
+        </div>
+      </div>
+      <div class="control-ud">
+        <div class="arrow-up arrow" (click)="rotateUp()">
+          <img src="assets/arrow.png" alt="" />
+        </div>
+        <div class="arrow-down arrow" (click)="rotateDown()">
+          <img src="assets/arrow.png" alt="" />
+        </div>
+      </div>
+    </div>
     <div
+      #baseEl
       class="base"
       [style.--base-width]="room.width"
       [style.--base-depth]="room.depth"
@@ -69,7 +88,8 @@
         [style.--cabinet_cont_start_z]="cabinet_cont_start_z"
         [style.--cabinet-thick]="cabinet_size.thick"
       >
-        <div *ngFor="let count of [].constructor(7); index as i"
+        <div
+          *ngFor="let count of [].constructor(7); index as i"
           class="cabinet"
           [style.--cabinet-count]="i"
           [style.--cabinet-width]="cabinet_size.width"
@@ -399,7 +419,7 @@
       </div>
 
       <!-- Board -->
-      <div class="board-cont">
+      <div class="board-cont hide">
         <div
           class="board"
           [style.--board-width]="board_size.width"

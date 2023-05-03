@@ -1,12 +1,31 @@
-import { Component } from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  ElementRef,
+  OnInit,
+  Renderer2,
+  ViewChild,
+} from '@angular/core';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
 })
-export class AppComponent {
+export class AppComponent implements AfterViewInit, OnInit {
+  @ViewChild('baseEl') baseEl: ElementRef | undefined;
+
   title = '3D Training Room';
+
+  base = {
+    perspective: 500, //px
+    rotateX: 70, //deg
+    rotateY: 0, //deg
+    rotateZ: 40, //deg
+    translateX: 100, //px
+    translateY: 0, //px
+    translateZ: -50, //px
+  };
 
   scale = 1 / 20;
   face_list = ['top', 'bottom', 'front', 'back', 'left', 'right'];
@@ -19,7 +38,7 @@ export class AppComponent {
   };
 
   // Wall Detail
-  wall_thick = 40 * this.scale;
+  wall_thick = 50 * this.scale;
 
   // Stair Detail
   step_sm_num = 12;
@@ -77,7 +96,13 @@ export class AppComponent {
     thick: 10 * this.scale,
   };
 
-  constructor() {}
+  constructor(private _renderer: Renderer2) {}
+
+  ngAfterViewInit(): void {
+    this.setBaseTransform();
+  }
+
+  ngOnInit(): void {}
 
   changeStair() {
     this.stair_style = this.stair_style == 1 ? 2 : 1;
@@ -93,5 +118,39 @@ export class AppComponent {
 
   calcZ_FB(depth: any) {
     return depth / 2;
+  }
+
+  setBaseTransform() {
+    this._renderer.setStyle(
+      this.baseEl?.nativeElement,
+      'transform',
+      `perspective(${this.base.perspective}px) 
+      rotateX(${this.base.rotateX}deg) 
+      rotateY(${this.base.rotateY}deg) 
+      rotateZ(${this.base.rotateZ}deg) 
+      translateX(${this.base.translateX}px)
+      translateY(${this.base.translateY}px) 
+      translateZ(${this.base.translateZ}px)`
+    );
+  }
+
+  rotateLeft() {
+    this.base.rotateZ += 10;
+    this.setBaseTransform();
+  }
+
+  rotateRight() {
+    this.base.rotateZ -= 10;
+    this.setBaseTransform();
+  }
+
+  rotateUp() {
+    this.base.rotateX += 10;
+    this.setBaseTransform();
+  }
+
+  rotateDown() {
+    this.base.rotateX -= 10;
+    this.setBaseTransform();
   }
 }
