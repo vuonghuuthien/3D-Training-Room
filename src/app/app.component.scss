@@ -214,6 +214,9 @@
     top: 0;
     left: 0;
     position: absolute;
+    transform: translateX(
+      calc((addUnit(--cabinet-width)) * var(--cabinet-count))
+    );
 
     .cabinet-top {
       width: addUnit(--cabinet-top-width);

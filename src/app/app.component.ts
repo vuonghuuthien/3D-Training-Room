@@ -72,7 +72,7 @@ export class AppComponent {
   cabinet_cont_start_z = this.step_lg_size.height * this.step_lg_num;
   cabinet_size = {
     width: 500 * this.scale,
-    height: 1200 * this.scale,
+    height: 1220 * this.scale,
     depth: 280 * this.scale,
     thick: 10 * this.scale,
   };

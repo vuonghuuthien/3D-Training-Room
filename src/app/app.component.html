@@ -69,8 +69,9 @@
         [style.--cabinet_cont_start_z]="cabinet_cont_start_z"
         [style.--cabinet-thick]="cabinet_size.thick"
       >
-        <div
+        <div *ngFor="let count of [].constructor(7); index as i"
           class="cabinet"
+          [style.--cabinet-count]="i"
           [style.--cabinet-width]="cabinet_size.width"
           [style.--cabinet-height]="cabinet_size.height"
           [style.--cabinet-depth]="cabinet_size.depth"
