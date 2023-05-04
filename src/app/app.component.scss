@@ -61,6 +61,17 @@
     transform: rotateY(90deg);
     background: $bg_right;
   }
+
+  #{$selector}__top,
+  #{$selector}__bottom,
+  #{$selector}__front,
+  #{$selector}__back,
+  #{$selector}__left,
+  #{$selector}__right {
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
 }
 
 @mixin img($height) {
@@ -722,14 +733,6 @@
     var(--door-bg-right)
   );
 
-  &.door-room-1, &.door-room-2 {
-    * {
-      background-position: center;
-      background-repeat: no-repeat;
-      background-size: cover;
-    }
-  }
-
   &.door-room-1 {
     top: auto;
     left: auto;
@@ -742,4 +745,60 @@
     left: auto;
     right: 0;
   }
+}
+
+.projector {
+  width: addUnit(--projector-width);
+  height: addUnit(--projector-depth);
+  top: 0;
+  left: 0;
+  position: absolute;
+  transform: translateX(
+      calc((addUnit(--room-width) - addUnit(--projector-width)) / 2)
+    )
+    translateY(addUnit(--projector-start-y))
+    translateZ(calc(addUnit(--room-height) - addUnit(--projector-z-center)));
+
+  @include face_list(
+    ".projector",
+    addUnit(--projector-height),
+    addUnit(--projector-depth),
+    addUnit(--projector-z-center),
+    addUnit(--projector-top-fb),
+    addUnit(--projector-z-fb),
+    var(--projector-bg-top),
+    var(--projector-bg-top),
+    var(--projector-bg-front),
+    var(--projector-bg-front),
+    var(--projector-bg-left),
+    var(--projector-bg-left)
+  );
+}
+
+.projector-light {
+  position: relative;
+  background: red;
+}
+.light {
+  width: addUnit(--light-width);
+  height: addUnit(--light-depth);
+  top: 0;
+  left: 50%;
+  position: absolute;
+  transform: translateX(-50%) translateZ(calc(addUnit(--light-height) / 2));
+
+  @include face_list(
+    ".light",
+    addUnit(--light-height),
+    addUnit(--light-depth),
+    addUnit(--light-z-center),
+    addUnit(--light-top-fb),
+    addUnit(--light-z-fb),
+    var(--light-bg-top),
+    var(--light-bg-top),
+    var(--light-bg-front),
+    var(--light-bg-front),
+    var(--light-bg-left),
+    var(--light-bg-left)
+  );
 }

@@ -33,6 +33,9 @@
       class="base"
       [style.--base-width]="room.width"
       [style.--base-depth]="room.depth"
+      [style.--room-width]="room.width"
+      [style.--room-height]="room.height"
+      [style.--room-depth]="room.depth"
     >
       <!-- Wall -->
       <div class="wall-cont" [style.--wall-thick]="wall_thick">
@@ -453,6 +456,46 @@
           *ngFor="let face of face_list"
           [class]="'face door__' + face"
         ></div>
+      </div>
+
+      <!-- Projector -->
+      <div
+        class="projector"
+        [style.--projector-width]="projector_size.width"
+        [style.--projector-height]="projector_size.height"
+        [style.--projector-depth]="projector_size.depth"
+        [style.--projector-z-center]="calcZCenter(projector_size.height)"
+        [style.--projector-top-fb]="
+          calcTop_FB(projector_size.height, projector_size.depth)
+        "
+        [style.--projector-z-fb]="calcZ_FB(projector_size.depth)"
+        [style.--projector-start-y]="projector_start_y"
+      >
+        <div *ngFor="let face of face_list" [class]="'face projector__' + face">
+          <div *ngIf="face == 'front'" class="projector-light">
+            <div
+              class="light"
+              [style.--light-width]="projector_light_size.width"
+              [style.--light-height]="projector_light_size.depth"
+              [style.--light-depth]="projector_light_size.height"
+              [style.--light-z-center]="
+                calcZCenter(projector_light_size.depth)
+              "
+              [style.--light-top-fb]="
+                calcTop_FB(
+                  projector_light_size.depth,
+                  projector_light_size.height
+                )
+              "
+              [style.--light-z-fb]="calcZ_FB(projector_light_size.height)"
+            >
+              <div
+                *ngFor="let face of face_list"
+                [class]="'face light__' + face"
+              ></div>
+            </div>
+          </div>
+        </div>
       </div>
 
       <div class="people people_praise" [style.--height]="people.height_xl">

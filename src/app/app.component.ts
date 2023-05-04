@@ -103,6 +103,20 @@ export class AppComponent implements AfterViewInit, OnInit {
     depth: 800 * this.scale,
   };
 
+  // Projector Detail
+  projector_start_y = this.room.depth / 100 * 70;
+  projector_size = {
+    width: 300 * this.scale,
+    height: 100 * this.scale,
+    depth: 200 * this.scale,
+  };
+
+  projector_light_size = {
+    width: 2600 * this.scale,
+    height: 2000 * this.scale,
+    depth: this.room.depth - (this.projector_start_y + this.projector_size.depth),
+  }
+
   constructor(private _renderer: Renderer2) {}
 
   ngAfterViewInit(): void {
