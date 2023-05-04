@@ -40,6 +40,14 @@ export class AppComponent implements AfterViewInit, OnInit {
   // Wall Detail
   wall_thick = 50 * this.scale;
 
+  // Col Detail
+  col_start_y = 400 * this.scale;
+  col_size = {
+    width: 600 * this.scale,
+    height: this.room.height,
+    depth: 600 * this.scale,
+  };
+
   // Stair Detail
   step_sm_num = 12;
   step_sm_size = {
@@ -52,7 +60,7 @@ export class AppComponent implements AfterViewInit, OnInit {
     height: 180 * 2 * this.scale,
     depth: 280 * 2 * this.scale,
   };
-  step_thick = 20 * this.scale;
+  step_thick = 30 * this.scale;
   // Stair Style
   stair_style = 2;
 
@@ -92,7 +100,8 @@ export class AppComponent implements AfterViewInit, OnInit {
   cabinet_size = {
     width: 500 * this.scale,
     height: 1220 * this.scale,
-    depth: 280 * this.scale,
+    // depth: 280 * this.scale,
+    depth: 400 * this.scale,
     thick: 10 * this.scale,
   };
 

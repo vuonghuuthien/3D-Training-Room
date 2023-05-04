@@ -263,7 +263,8 @@
   }
   #{$selector}__bottom {
     border-top: $depth-face-bottom solid $bg_bottom;
-    transform: rotateX(180deg) translateZ($half-height-sm) rotateX(calc(-1 * $angle_height));;
+    transform: rotateX(180deg) translateZ($half-height-sm)
+      rotateX(calc(-1 * $angle_height));
   }
   #{$selector}__front {
     transform: rotateX(-90deg) translateZ($half-depth);
@@ -339,6 +340,7 @@
       position: absolute;
       width: 100%;
       height: 100%;
+      z-index: 1000;
 
       .control-lr,
       .control-ud {
@@ -465,6 +467,28 @@
       var(--wall-back-bg-front),
       var(--wall-back-bg-left),
       var(--wall-back-bg-left)
+    );
+  }
+  .col {
+    width: addUnit(--col-width);
+    height: addUnit(--col-depth);
+    top: 0;
+    left: 0;
+    position: absolute;
+    transform: translateY(addUnit(--col-start-y))
+      translateZ(halfNum(--col-height));
+
+    @include face_list(
+      ".col",
+      addUnit(--col-width),
+      addUnit(--col-height),
+      addUnit(--col-depth),
+      var(--col-bg-top),
+      var(--col-bg-top),
+      var(--col-bg-front),
+      var(--col-bg-front),
+      var(--col-bg-left),
+      var(--col-bg-left)
     );
   }
 }
@@ -617,6 +641,17 @@
         var(--wood-bg-left),
         var(--wood-bg-left)
       );
+    }
+
+    &.cabinet-1 {
+      .cabinet-right {
+        opacity: 0;
+      }
+    }
+    &.cabinet-2 {
+      .cabinet-left {
+        opacity: 0;
+      }
     }
   }
 }
@@ -793,11 +828,12 @@
 
   &.people_guitarist {
     left: 40%;
-    @include img_y_z(-8px, 1px);
+    @include img_y_z(-9px, 2px);
   }
 
   &.people_laptop {
     top: -130%;
+    left: 20%;
   }
 }
 
@@ -860,12 +896,12 @@
       addUnit(--table-mini-top-width),
       addUnit(--table-mini-top-height),
       addUnit(--table-mini-top-depth),
-      var(--glass-green-bg-top),
-      var(--glass-green-bg-top),
-      var(--glass-green-bg-front),
-      var(--glass-green-bg-front),
-      var(--glass-green-bg-left),
-      var(--glass-green-bg-left)
+      var(--table-mini-green-bg-top),
+      var(--table-mini-green-bg-top),
+      var(--table-mini-green-bg-front),
+      var(--table-mini-green-bg-front),
+      var(--table-mini-green-bg-left),
+      var(--table-mini-green-bg-left)
     );
   }
   .table-mini-front {
@@ -884,12 +920,12 @@
       addUnit(--table-mini-front-width),
       addUnit(--table-mini-front-height),
       addUnit(--table-mini-front-depth),
-      var(--glass-green-bg-top),
-      var(--glass-green-bg-top),
-      var(--glass-green-bg-front),
-      var(--glass-green-bg-front),
-      var(--glass-green-bg-left),
-      var(--glass-green-bg-left)
+      var(--table-mini-green-bg-top),
+      var(--table-mini-green-bg-top),
+      var(--table-mini-green-bg-front),
+      var(--table-mini-green-bg-front),
+      var(--table-mini-green-bg-left),
+      var(--table-mini-green-bg-left)
     );
   }
   .table-mini-back {
@@ -910,17 +946,59 @@
       addUnit(--table-mini-back-width),
       addUnit(--table-mini-back-height),
       addUnit(--table-mini-back-depth),
-      var(--glass-green-bg-top),
-      var(--glass-green-bg-top),
-      var(--glass-green-bg-front),
-      var(--glass-green-bg-front),
-      var(--glass-green-bg-left),
-      var(--glass-green-bg-left)
+      var(--table-mini-green-bg-top),
+      var(--table-mini-green-bg-top),
+      var(--table-mini-green-bg-front),
+      var(--table-mini-green-bg-front),
+      var(--table-mini-green-bg-left),
+      var(--table-mini-green-bg-left)
     );
   }
   .table-mini-front-2,
   .table-mini-back-2 {
     left: calc(addUnit(--table-mini-width) - addUnit(--table-mini-thick));
+  }
+
+  &.table-mini-2 {
+    left: 20%;
+
+    .table-mini-top,
+    .table-mini-front,
+    .table-mini-back {
+      &__top,
+      &__bottom {
+        background: var(--table-mini-yellow-bg-top) !important;
+      }
+      &__left,
+      &__right {
+        background: var(--table-mini-yellow-bg-left) !important;
+      }
+      &__front,
+      &__back {
+        background: var(--table-mini-yellow-bg-front) !important;
+      }
+    }
+  }
+
+  &.table-mini-3 {
+    left: 70%;
+
+    .table-mini-top,
+    .table-mini-front,
+    .table-mini-back {
+      &__top,
+      &__bottom {
+        background: var(--table-mini-red-bg-top) !important;
+      }
+      &__left,
+      &__right {
+        background: var(--table-mini-red-bg-left) !important;
+      }
+      &__front,
+      &__back {
+        background: var(--table-mini-red-bg-front) !important;
+      }
+    }
   }
 }
 

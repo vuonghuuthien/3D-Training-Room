@@ -4,9 +4,17 @@
   --glass-blue-bg-left: rgba(43, 131, 252, 0.2);
   --glass-blue-bg-front: rgba(34, 105, 202, 0.2);
 
-  --glass-green-bg-top: rgba(64, 192, 87, 0.5);
-  --glass-green-bg-left: #2f9e44;
-  --glass-green-bg-front: #2b8a3e;
+  --table-mini-green-bg-top: rgba(64, 192, 87, 0.5);
+  --table-mini-green-bg-left: #2f9e44;
+  --table-mini-green-bg-front: #2b8a3e;
+
+  --table-mini-yellow-bg-top: rgba(251, 224, 20, 0.8);
+  --table-mini-yellow-bg-left: #FBE014;
+  --table-mini-yellow-bg-front: #ECC30A;
+
+  --table-mini-red-bg-top: rgba(240, 68, 56, 0.5);
+  --table-mini-red-bg-left: #F04438;
+  --table-mini-red-bg-front: #D92D20;
 
   --light-black-bg-top: #585855;
   --light-black-bg-left: #262727;
@@ -24,13 +32,17 @@
   --gray-bg-left: #e8e8e8;
   --gray-bg-front: #d6d6d6;
 
+  --col-bg-top: #fcfcfc;
+  --col-bg-left: #e8e8e8;
+  --col-bg-front: #d6d6d6;
+
   --wall-bg-top: #fcfcfc;
   --wall-bg-left: #e8e8e8;
   --wall-bg-front: #d6d6d6;
 
   --wall-back-bg-top: #fcfcfc;
   --wall-back-bg-left: #e8e8e8;
-  --wall-back-bg-front: #d6d6d6;
+  --wall-back-bg-front: linear-gradient(to right, #141e30, #243b55);
 
   --floor-bg-top: #fcfcfc;
   --floor-bg-left: #e8e8e8;
@@ -44,17 +56,17 @@
   --board-bg-left: #e8e8e8;
   --board-bg-front: #d6d6d6;
 
-  --seat-cushion-bg-top: #fd853a;
-  --seat-cushion-bg-left: #fb6514;
-  --seat-cushion-bg-front: #ec4a0a;
+  --seat-cushion-bg-top: linear-gradient(90deg, #00C9FF 0%, #92FE9D 100%);
+  --seat-cushion-bg-left: linear-gradient(90deg, #00C9FF 0%, #92FE9D 100%);
+  --seat-cushion-bg-front: linear-gradient(90deg, #00C9FF 0%, #92FE9D 100%);
 
   --stair-bg-top: #fcfcfc;
   --stair-bg-left: #e8e8e8;
   --stair-bg-front: #d6d6d6;
 
-  --stair-sm-bg-top: #559cfd;
+  --stair-sm-bg-top: linear-gradient(90deg, #56CCF2 0%, #2F80ED 100%);
   --stair-sm-bg-left: #2b83fc;
-  --stair-sm-bg-front: #2269ca;
+  --stair-sm-bg-front: linear-gradient(90deg, #56CCF2 0%, #2F80ED 100%);
 
   --door-bg-top: #fcfcfc;
   --door-bg-left: url("/assets/door-1-left.png");
