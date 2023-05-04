@@ -104,18 +104,48 @@ export class AppComponent implements AfterViewInit, OnInit {
   };
 
   // Projector Detail
-  projector_start_y = this.room.depth / 100 * 70;
+  projector_start_y = (this.room.depth / 100) * 70;
   projector_size = {
-    width: 300 * this.scale,
+    width: 500 * this.scale,
     height: 100 * this.scale,
     depth: 200 * this.scale,
   };
 
+  projector_light_start_y = this.projector_start_y;
   projector_light_size = {
-    width: 2600 * this.scale,
+    width_sm: this.projector_size.width,
+    height_sm: this.projector_size.height,
+    width: 2800 * this.scale,
     height: 2000 * this.scale,
-    depth: this.room.depth - (this.projector_start_y + this.projector_size.depth),
-  }
+    depth:
+      this.room.depth - (this.projector_start_y + this.projector_size.depth),
+  };
+  projector_light_angle = {
+    width: this.calcAngle(
+      (this.projector_light_size.width - this.projector_light_size.width_sm) /
+        2,
+      this.projector_light_size.depth
+    ),
+    height: this.calcAngle(
+      this.projector_light_size.height - this.projector_light_size.height_sm,
+      this.projector_light_size.depth
+    ),
+  };
+  projector_light_depth_face = {
+    lr: Math.sqrt(
+      Math.pow(
+        (this.projector_light_size.width - this.projector_light_size.width_sm) /
+          2,
+        2
+      ) + Math.pow(this.projector_light_size.depth, 2)
+    ),
+    bottom: Math.sqrt(
+      Math.pow(
+        this.projector_light_size.height - this.projector_light_size.height_sm,
+        2
+      ) + Math.pow(this.projector_light_size.depth, 2)
+    ),
+  };
 
   constructor(private _renderer: Renderer2) {}
 
@@ -123,7 +153,16 @@ export class AppComponent implements AfterViewInit, OnInit {
     this.setBaseTransform();
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    console.log(this.projector_light_angle);
+  }
+
+  calcAngle(dx: any, dy: any) {
+    var theta = Math.atan2(dx, dy); // range (-PI, PI]
+    theta *= 180 / Math.PI; // rads to degs, range (-180, 180]
+    //if (theta < 0) theta = 360 + theta; // range [0, 360)
+    return theta;
+  }
 
   changeStair() {
     this.stair_style = this.stair_style == 1 ? 2 : 1;

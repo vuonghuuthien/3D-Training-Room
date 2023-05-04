@@ -363,9 +363,15 @@
           <div *ngIf="face == 'front'" class="projector-light">
             <div
               class="light"
+              [style.--light-width-sm]="projector_light_size.width_sm"
+              [style.--light-height-sm]="projector_light_size.height_sm"
               [style.--light-width]="projector_light_size.width"
-              [style.--light-height]="projector_light_size.depth"
-              [style.--light-depth]="projector_light_size.height"
+              [style.--light-height]="projector_light_size.height"
+              [style.--light-depth]="projector_light_size.depth"
+              [style.--light-angle-width]="projector_light_angle.width"
+              [style.--light-angle-height]="projector_light_angle.height"
+              [style.--light-depth-face-lr]="projector_light_depth_face.lr"
+              [style.--light-depth-face-bottom]="projector_light_depth_face.bottom"
             >
               <div
                 *ngFor="let face of face_list"

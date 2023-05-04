@@ -2,6 +2,10 @@
   @return calc(var($css_variable) * 1px);
 }
 
+@function addDeg($value) {
+  @return calc(var($value) * 1deg);
+}
+
 @mixin img($height) {
   transform: rotateX(-90deg) translateY(calc($height / 2 * -1));
 }
@@ -162,6 +166,137 @@
       transform: rotateY(90deg);
     }
     background: $bg_right;
+  }
+
+  #{$selector}__top,
+  #{$selector}__bottom,
+  #{$selector}__front,
+  #{$selector}__back,
+  #{$selector}__left,
+  #{$selector}__right {
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+}
+
+@mixin face_list_light_top(
+  $selector,
+  $width_sm,
+  $height_sm,
+  $width,
+  $height,
+  $depth,
+  $angle_width,
+  $angle-height,
+  $depth-face-lr,
+  $depth-face-bottom,
+  $bg_top,
+  $bg_bottom,
+  $bg_front,
+  $bg_back,
+  $bg_left,
+  $bg_right,
+  $width_sm_percent: 0,
+  $height_sm_percent: 0,
+  $width_percent: 0,
+  $height_percent: 0,
+  $depth_percent: 0
+) {
+  $half-width-sm: calc(#{$width-sm} / 2);
+  $half-height-sm: calc(#{$height-sm} / 2);
+  $half-width: calc(#{$width} / 2);
+  $half-height: calc(#{$height} / 2);
+  $half-depth: calc(#{$depth} / 2);
+  $diff-width: calc(($width - $width-sm) / 2);
+  $diff-height: calc(($height - $height-sm) / 2);
+  $diff-width-lt: calc(($width - $width-sm) / 4);
+
+  & {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  #{$selector}__top,
+  #{$selector}__bottom {
+    width: $width;
+    height: 0;
+    border-left: $diff-width solid transparent;
+    border-right: $diff-width solid transparent;
+  }
+
+  #{$selector}__front {
+    width: $width;
+    height: $height;
+  }
+
+  #{$selector}__back {
+    width: $width_sm;
+    height: $height_sm;
+  }
+
+  #{$selector}__left,
+  #{$selector}__right {
+    width: $height;
+    height: $depth-face-lr;
+
+    &::before {
+      position: absolute;
+      content: "";
+      width: 0;
+      height: 0;
+      border-bottom: $depth-face-lr solid $bg_right;
+      bottom: 0;
+    }
+
+    &::after {
+      position: absolute;
+      content: "";
+      width: $height_sm;
+      height: $depth-face-lr;
+      background: $bg_right;
+    }
+  }
+
+  #{$selector}__top {
+    border-bottom: $depth solid $bg_top;
+    transform: rotateX(0deg) translateZ($half-height);
+  }
+  #{$selector}__bottom {
+    border-top: $depth-face-bottom solid $bg_bottom;
+    transform: rotateX(180deg) translateZ($half-height-sm) rotateX(calc(-1 * $angle_height));;
+  }
+  #{$selector}__front {
+    transform: rotateX(-90deg) translateZ($half-depth);
+    background: $bg_front;
+  }
+  #{$selector}__back {
+    transform: rotateX(90deg) translateY(calc($half-height - $half-height-sm))
+      translateZ($half-depth);
+    background: $bg_back;
+  }
+  #{$selector}__left {
+    transform: rotateY(-90deg) translateZ(calc($half-width-sm + $diff-width-lt))
+      rotateX($angle_width);
+    &::before {
+      border-left: calc($height - $height_sm) solid transparent;
+      right: $height_sm;
+    }
+    &::after {
+      right: 0;
+    }
+  }
+  #{$selector}__right {
+    transform: rotateY(90deg) translateZ(calc($half-width-sm + $diff-width-lt))
+      rotateX($angle_width);
+    &::before {
+      border-right: calc($height - $height_sm) solid transparent;
+      left: $height_sm;
+    }
+    &::after {
+      left: 0;
+    }
   }
 
   #{$selector}__top,
@@ -506,8 +641,7 @@
       height: addUnit(--step-depth);
       transform: translateZ(
         calc(
-          halfNum(--step-height) + addUnit(--step-height) *
-            var(--step-count)
+          halfNum(--step-height) + addUnit(--step-height) * var(--step-count)
         )
       );
 
@@ -541,9 +675,7 @@
             left: 0;
             position: absolute;
             transform: translateZ(
-              calc(
-                addUnit(--step-height) + halfNum(--step-top-height)
-              )
+              calc(addUnit(--step-height) + halfNum(--step-top-height))
             );
 
             @include face_list(
@@ -862,13 +994,19 @@
   top: 0;
   left: 50%;
   position: absolute;
-  transform: translateX(-50%) translateZ(halfNum(--light-height));
+  transform: translateX(-50%) translateZ(halfNum(--light-height)) rotateX(90deg);
 
-  @include face_list(
+  @include face_list_light_top(
     ".light",
+    addUnit(--light-width-sm),
+    addUnit(--light-height-sm),
     addUnit(--light-width),
     addUnit(--light-height),
     addUnit(--light-depth),
+    addDeg(--light-angle-width),
+    addDeg(--light-angle-height),
+    addUnit(--light-depth-face-lr),
+    addUnit(--light-depth-face-bottom),
     var(--light-bg-top),
     var(--light-bg-top),
     var(--light-bg-front),
