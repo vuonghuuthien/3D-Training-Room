@@ -115,7 +115,7 @@ export class AppComponent implements AfterViewInit, OnInit {
   projector_light_size = {
     width_sm: this.projector_size.width,
     height_sm: this.projector_size.height,
-    width: 2800 * this.scale,
+    width: 3000 * this.scale,
     height: 2000 * this.scale,
     depth:
       this.room.depth - (this.projector_start_y + this.projector_size.depth),

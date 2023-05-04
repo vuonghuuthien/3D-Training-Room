@@ -69,9 +69,10 @@
   --projector-bg-left: #e8e8e8;
   --projector-bg-front: #d6d6d6;
 
-  --light-bg-top: rgba(255, 255, 255, 0.4);
-  --light-bg-left: rgba(255, 255, 255, 0.4);
-  --light-bg-front: rgba(255, 255, 255, 0.4);
+  --light-bg-top: rgba(255, 255, 255, 0.2);
+  --light-bg-left: rgba(255, 255, 255, 0.2);
+  --light-bg-front: url("/assets/dashboard.png");
+  --light-bg-back: rgba(144, 144, 144, 0.2);
 }
 
 * {
