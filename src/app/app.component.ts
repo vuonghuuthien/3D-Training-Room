@@ -81,8 +81,8 @@ export class AppComponent implements AfterViewInit, OnInit {
   table_mini_size = {
     width: 400 * this.scale,
     height: 600 * this.scale,
-    height_back: 280 * this.scale,
     depth: 600 * this.scale,
+    height_back: 280 * this.scale,
     thick: 20 * this.scale,
     border: 20 * this.scale,
   };
@@ -127,18 +127,6 @@ export class AppComponent implements AfterViewInit, OnInit {
 
   changeStair() {
     this.stair_style = this.stair_style == 1 ? 2 : 1;
-  }
-
-  calcZCenter(height: any) {
-    return height / 2;
-  }
-
-  calcTop_FB(height: any, depth: any) {
-    return (depth - height) / 2;
-  }
-
-  calcZ_FB(depth: any) {
-    return depth / 2;
   }
 
   setBaseTransform() {

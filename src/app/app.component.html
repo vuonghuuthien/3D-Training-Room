@@ -44,9 +44,6 @@
           [style.--wall-left-width]="wall_thick"
           [style.--wall-left-height]="room.height"
           [style.--wall-left-depth]="room.depth"
-          [style.--wall-left-z-center]="calcZCenter(room.height)"
-          [style.--wall-left-top-fb]="calcTop_FB(room.height, room.depth)"
-          [style.--wall-left-z-fb]="calcZ_FB(room.depth)"
         >
           <div
             *ngFor="let face of face_list"
@@ -58,9 +55,6 @@
           [style.--wall-back-width]="room.width"
           [style.--wall-back-height]="room.height"
           [style.--wall-back-depth]="wall_thick"
-          [style.--wall-back-z-center]="calcZCenter(room.height)"
-          [style.--wall-back-top-fb]="calcTop_FB(room.height, wall_thick)"
-          [style.--wall-back-z-fb]="calcZ_FB(wall_thick)"
         >
           <div
             *ngFor="let face of face_list"
@@ -75,9 +69,6 @@
         [style.--floor-width]="room.width"
         [style.--floor-height]="wall_thick"
         [style.--floor-depth]="room.depth"
-        [style.--floor-z-center]="calcZCenter(wall_thick)"
-        [style.--floor-top-fb]="calcTop_FB(wall_thick, room.depth)"
-        [style.--floor-z-fb]="calcZ_FB(room.depth)"
       >
         <div
           *ngFor="let face of face_list"
@@ -105,11 +96,6 @@
             [style.--cabinet-top-width]="cabinet_size.width"
             [style.--cabinet-top-height]="cabinet_size.thick"
             [style.--cabinet-top-depth]="cabinet_size.depth"
-            [style.--cabinet-top-z-center]="calcZCenter(cabinet_size.thick)"
-            [style.--cabinet-top-top-fb]="
-              calcTop_FB(cabinet_size.thick, cabinet_size.depth)
-            "
-            [style.--cabinet-top-z-fb]="calcZ_FB(cabinet_size.depth)"
           >
             <div
               *ngFor="let face of face_list"
@@ -121,11 +107,6 @@
             [style.--cabinet-left-width]="cabinet_size.thick"
             [style.--cabinet-left-height]="cabinet_size.height"
             [style.--cabinet-left-depth]="cabinet_size.depth"
-            [style.--cabinet-left-z-center]="calcZCenter(cabinet_size.height)"
-            [style.--cabinet-left-top-fb]="
-              calcTop_FB(cabinet_size.height, cabinet_size.depth)
-            "
-            [style.--cabinet-left-z-fb]="calcZ_FB(cabinet_size.depth)"
           >
             <div
               *ngFor="let face of face_list"
@@ -137,11 +118,6 @@
             [style.--cabinet-right-width]="cabinet_size.thick"
             [style.--cabinet-right-height]="cabinet_size.height"
             [style.--cabinet-right-depth]="cabinet_size.depth"
-            [style.--cabinet-right-z-center]="calcZCenter(cabinet_size.height)"
-            [style.--cabinet-right-top-fb]="
-              calcTop_FB(cabinet_size.height, cabinet_size.depth)
-            "
-            [style.--cabinet-right-z-fb]="calcZ_FB(cabinet_size.depth)"
           >
             <div
               *ngFor="let face of face_list"
@@ -153,11 +129,6 @@
             [style.--cabinet-front-width]="cabinet_size.width"
             [style.--cabinet-front-height]="cabinet_size.height"
             [style.--cabinet-front-depth]="cabinet_size.thick"
-            [style.--cabinet-front-z-center]="calcZCenter(cabinet_size.height)"
-            [style.--cabinet-front-top-fb]="
-              calcTop_FB(cabinet_size.height, cabinet_size.thick)
-            "
-            [style.--cabinet-front-z-fb]="calcZ_FB(cabinet_size.thick)"
           >
             <div
               *ngFor="let face of face_list"
@@ -169,11 +140,6 @@
             [style.--cabinet-back-width]="cabinet_size.width"
             [style.--cabinet-back-height]="cabinet_size.height"
             [style.--cabinet-back-depth]="cabinet_size.thick"
-            [style.--cabinet-back-z-center]="calcZCenter(cabinet_size.height)"
-            [style.--cabinet-back-top-fb]="
-              calcTop_FB(cabinet_size.height, cabinet_size.thick)
-            "
-            [style.--cabinet-back-z-fb]="calcZ_FB(cabinet_size.thick)"
           >
             <div
               *ngFor="let face of face_list"
@@ -189,11 +155,6 @@
           class="stair-step stair-step-lg"
           [style.--step-height]="step_lg_size.height"
           [style.--step-depth]="step_lg_size.depth"
-          [style.--step-z-center]="calcZCenter(step_lg_size.height)"
-          [style.--step-top-fb]="
-            calcTop_FB(step_lg_size.height, step_lg_size.depth)
-          "
-          [style.--step-z-fb]="calcZ_FB(step_lg_size.depth)"
         >
           <div
             *ngFor="let count of [].constructor(this.step_lg_num); index as i"
@@ -210,11 +171,6 @@
           class="stair-step stair-step-sm"
           [style.--step-height]="step_sm_size.height"
           [style.--step-depth]="step_sm_size.depth"
-          [style.--step-z-center]="calcZCenter(step_sm_size.height)"
-          [style.--step-top-fb]="
-            calcTop_FB(step_sm_size.height, step_sm_size.depth)
-          "
-          [style.--step-z-fb]="calcZ_FB(step_sm_size.depth)"
           [style.--stair-sm-width]="step_sm_size.width"
         >
           <div
@@ -239,11 +195,6 @@
           class="stair-step stair-step-lg"
           [style.--step-height]="step_lg_size.height"
           [style.--step-depth]="step_lg_size.depth"
-          [style.--step-z-center]="calcZCenter(step_lg_size.height)"
-          [style.--step-top-fb]="
-            calcTop_FB(step_lg_size.height, step_lg_size.depth)
-          "
-          [style.--step-z-fb]="calcZ_FB(step_lg_size.depth)"
         >
           <div
             *ngFor="let count of [].constructor(this.step_lg_num); index as i"
@@ -254,11 +205,6 @@
               class="step-top"
               [style.--step-top-height]="step_thick"
               [style.--step-top-depth]="step_lg_size.depth"
-              [style.--step-top-z-center]="calcZCenter(step_thick)"
-              [style.--step-top-top-fb]="
-                calcTop_FB(step_thick, step_lg_size.depth)
-              "
-              [style.--step-top-z-fb]="calcZ_FB(step_lg_size.depth)"
             >
               <div
                 *ngFor="let face of face_list"
@@ -271,13 +217,6 @@
                 [style.--seat-cushion-height]="seat_cushion_size.height"
                 [style.--seat-cushion-depth]="seat_cushion_size.depth"
                 [style.--seat-cushion-space]="seat_cushion_size.space"
-                [style.--seat-cushion-z-center]="
-                  calcZCenter(seat_cushion_size.height)
-                "
-                [style.--seat-cushion-top-fb]="
-                  calcTop_FB(seat_cushion_size.height, seat_cushion_size.depth)
-                "
-                [style.--seat-cushion-z-fb]="calcZ_FB(seat_cushion_size.depth)"
               >
                 <div
                   *ngFor="let face of face_list"
@@ -314,15 +253,6 @@
                   [style.--table-mini-top-width]="table_mini_size.width"
                   [style.--table-mini-top-height]="table_mini_size.thick"
                   [style.--table-mini-top-depth]="table_mini_size.depth"
-                  [style.--table-mini-top-z-center]="
-                    calcZCenter(table_mini_size.thick)
-                  "
-                  [style.--table-mini-top-top-fb]="
-                    calcTop_FB(table_mini_size.thick, table_mini_size.depth)
-                  "
-                  [style.--table-mini-top-z-fb]="
-                    calcZ_FB(table_mini_size.depth)
-                  "
                 >
                   <div
                     *ngFor="let face of face_list"
@@ -336,15 +266,6 @@
                   [style.--table-mini-front-width]="table_mini_size.border"
                   [style.--table-mini-front-height]="table_mini_size.height"
                   [style.--table-mini-front-depth]="table_mini_size.thick"
-                  [style.--table-mini-front-z-center]="
-                    calcZCenter(table_mini_size.height)
-                  "
-                  [style.--table-mini-front-top-fb]="
-                    calcTop_FB(table_mini_size.height, table_mini_size.thick)
-                  "
-                  [style.--table-mini-front-z-fb]="
-                    calcZ_FB(table_mini_size.thick)
-                  "
                 >
                   <div
                     *ngFor="let face of face_list"
@@ -357,21 +278,9 @@
                   [class]="'table-mini-back-' + (i + 1)"
                   [style.--table-mini-back-width]="table_mini_size.border"
                   [style.--table-mini-back-height]="table_mini_size.height_back"
+                  [style.--table-mini-back-depth]="table_mini_size.thick"
                   [style.--table-mini-back-height-than]="
                     table_mini_size.height - table_mini_size.height_back
-                  "
-                  [style.--table-mini-back-depth]="table_mini_size.thick"
-                  [style.--table-mini-back-z-center]="
-                    calcZCenter(table_mini_size.height_back)
-                  "
-                  [style.--table-mini-back-top-fb]="
-                    calcTop_FB(
-                      table_mini_size.height_back,
-                      table_mini_size.thick
-                    )
-                  "
-                  [style.--table-mini-back-z-fb]="
-                    calcZ_FB(table_mini_size.thick)
                   "
                 >
                   <div
@@ -385,11 +294,6 @@
               class="step-front"
               [style.--step-front-height]="step_lg_size.height"
               [style.--step-front-depth]="step_thick"
-              [style.--step-front-z-center]="calcZCenter(step_lg_size.height)"
-              [style.--step-front-top-fb]="
-                calcTop_FB(step_lg_size.height, step_thick)
-              "
-              [style.--step-front-z-fb]="calcZ_FB(step_thick)"
             >
               <div
                 *ngFor="let face of face_list"
@@ -402,11 +306,6 @@
           class="stair-step stair-step-sm"
           [style.--step-height]="step_sm_size.height"
           [style.--step-depth]="step_sm_size.depth"
-          [style.--step-z-center]="calcZCenter(step_sm_size.height)"
-          [style.--step-top-fb]="
-            calcTop_FB(step_sm_size.height, step_sm_size.depth)
-          "
-          [style.--step-z-fb]="calcZ_FB(step_sm_size.depth)"
           [style.--stair-sm-width]="step_sm_size.width"
         >
           <div
@@ -429,9 +328,6 @@
           [style.--board-width]="board_size.width"
           [style.--board-height]="board_size.height"
           [style.--board-depth]="wall_thick"
-          [style.--board-z-center]="calcZCenter(board_size.height)"
-          [style.--board-top-fb]="calcTop_FB(board_size.height, wall_thick)"
-          [style.--board-z-fb]="calcZ_FB(wall_thick)"
         >
           <div
             *ngFor="let face of face_list"
@@ -448,9 +344,6 @@
         [style.--door-width]="door_size.width"
         [style.--door-height]="door_size.height"
         [style.--door-depth]="door_size.depth"
-        [style.--door-z-center]="calcZCenter(door_size.height)"
-        [style.--door-top-fb]="calcTop_FB(door_size.height, door_size.depth)"
-        [style.--door-z-fb]="calcZ_FB(door_size.depth)"
       >
         <div
           *ngFor="let face of face_list"
@@ -464,11 +357,6 @@
         [style.--projector-width]="projector_size.width"
         [style.--projector-height]="projector_size.height"
         [style.--projector-depth]="projector_size.depth"
-        [style.--projector-z-center]="calcZCenter(projector_size.height)"
-        [style.--projector-top-fb]="
-          calcTop_FB(projector_size.height, projector_size.depth)
-        "
-        [style.--projector-z-fb]="calcZ_FB(projector_size.depth)"
         [style.--projector-start-y]="projector_start_y"
       >
         <div *ngFor="let face of face_list" [class]="'face projector__' + face">
@@ -478,16 +366,6 @@
               [style.--light-width]="projector_light_size.width"
               [style.--light-height]="projector_light_size.depth"
               [style.--light-depth]="projector_light_size.height"
-              [style.--light-z-center]="
-                calcZCenter(projector_light_size.depth)
-              "
-              [style.--light-top-fb]="
-                calcTop_FB(
-                  projector_light_size.depth,
-                  projector_light_size.height
-                )
-              "
-              [style.--light-z-fb]="calcZ_FB(projector_light_size.height)"
             >
               <div
                 *ngFor="let face of face_list"

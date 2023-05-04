@@ -2,48 +2,125 @@
   @return calc(var($css_variable) * 1px);
 }
 
+@mixin img($height) {
+  transform: rotateX(-90deg) translateY(calc($height / 2 * -1));
+}
+
+@mixin img_y_z($y, $z) {
+  transform: rotateX(-90deg) translateY($y) translateZ($z);
+}
+
+@function halfNum($value) {
+  @return calc(addUnit($value) / 2);
+}
+
+// @mixin face_list_god(
+//   $selector,
+//   $height,
+//   $depth,
+//   $z_center,
+//   $top_fb,
+//   $z_fb,
+//   $bg_top,
+//   $bg_bottom,
+//   $bg_front,
+//   $bg_back,
+//   $bg_left,
+//   $bg_right
+// ) {
+//   #{$selector}__top,
+//   #{$selector}__bottom {
+//     width: 100%;
+//     height: 100%;
+//   }
+
+//   #{$selector}__top {
+//     transform: rotateX(0deg) translateZ($z_center);
+//     background: $bg_top;
+//   }
+//   #{$selector}__bottom {
+//     transform: rotateX(180deg) translateZ($z_center);
+//     background: $bg_bottom;
+//   }
+
+//   #{$selector}__front,
+//   #{$selector}__back {
+//     width: 100%;
+//     height: $height;
+//     top: $top-fb;
+//   }
+//   #{$selector}__front {
+//     transform: rotateX(-90deg) translateZ($z_fb);
+//     background: $bg_front;
+//   }
+//   #{$selector}__back {
+//     transform: rotateX(90deg) translateZ($z_fb);
+//     background: $bg_back;
+//   }
+
+//   #{$selector}__left,
+//   #{$selector}__right {
+//     width: $height;
+//     height: $depth;
+//   }
+//   #{$selector}__left {
+//     left: calc(-1 * $z_center);
+//     transform: rotateY(-90deg);
+//     background: $bg_left;
+//   }
+//   #{$selector}__right {
+//     left: calc(100% - $z_center);
+//     transform: rotateY(90deg);
+//     background: $bg_right;
+//   }
+
+//   #{$selector}__top,
+//   #{$selector}__bottom,
+//   #{$selector}__front,
+//   #{$selector}__back,
+//   #{$selector}__left,
+//   #{$selector}__right {
+//     background-position: center;
+//     background-repeat: no-repeat;
+//     background-size: cover;
+//   }
+// }
+
 @mixin face_list(
   $selector,
+  $width,
   $height,
   $depth,
-  $z_center,
-  $top_fb,
-  $z_fb,
   $bg_top,
   $bg_bottom,
   $bg_front,
   $bg_back,
   $bg_left,
-  $bg_right
+  $bg_right,
+  $width_percent: 0,
+  $height_percent: 0,
+  $depth_percent: 0
 ) {
-  #{$selector}__top,
-  #{$selector}__bottom {
-    width: 100%;
-    height: 100%;
+  $half-width: calc(#{$width} / 2);
+  $half-height: calc(#{$height} / 2);
+  $half-depth: calc(#{$depth} / 2);
+
+  & {
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
-  #{$selector}__top {
-    transform: rotateX(0deg) translateZ($z_center);
-    background: $bg_top;
-  }
+  #{$selector}__top,
   #{$selector}__bottom {
-    transform: rotateX(180deg) translateZ($z_center);
-    background: $bg_bottom;
+    width: $width;
+    height: $depth;
   }
 
   #{$selector}__front,
   #{$selector}__back {
-    width: 100%;
+    width: $width;
     height: $height;
-    top: $top-fb;
-  }
-  #{$selector}__front {
-    transform: rotateX(-90deg) translateZ($z_fb);
-    background: $bg_front;
-  }
-  #{$selector}__back {
-    transform: rotateX(90deg) translateZ($z_fb);
-    background: $bg_back;
   }
 
   #{$selector}__left,
@@ -51,14 +128,39 @@
     width: $height;
     height: $depth;
   }
+
+  #{$selector}__top {
+    transform: rotateX(0deg) translateZ($half-height);
+    background: $bg_top;
+  }
+  #{$selector}__bottom {
+    transform: rotateX(180deg) translateZ($half-height);
+    background: $bg_bottom;
+  }
+  #{$selector}__front {
+    transform: rotateX(-90deg) translateZ($half-depth);
+    background: $bg_front;
+  }
+  #{$selector}__back {
+    transform: rotateX(90deg) translateZ($half-depth);
+    background: $bg_back;
+  }
   #{$selector}__left {
-    left: calc(-1 * $z_center);
-    transform: rotateY(-90deg);
+    @if $width_percent == 0 {
+      transform: rotateY(-90deg) translateZ($half-width);
+    } @else {
+      left: calc(-1 * $half-height);
+      transform: rotateY(-90deg);
+    }
     background: $bg_left;
   }
   #{$selector}__right {
-    left: calc(100% - $z_center);
-    transform: rotateY(90deg);
+    @if $width_percent == 0 {
+      transform: rotateY(90deg) translateZ($half-width);
+    } @else {
+      left: calc(100% - $half-height);
+      transform: rotateY(90deg);
+    }
     background: $bg_right;
   }
 
@@ -72,14 +174,6 @@
     background-repeat: no-repeat;
     background-size: cover;
   }
-}
-
-@mixin img($height) {
-  transform: rotateX(-90deg) translateY(calc($height / 2 * -1));
-}
-
-@mixin img_y_z($y, $z) {
-  transform: rotateX(-90deg) translateY($y) translateZ($z);
 }
 
 .env {
@@ -199,15 +293,13 @@
     left: 0;
     position: absolute;
     transform: translateX(calc(-1 * addUnit(--wall-thick)))
-      translateZ(addUnit(--wall-left-z-center));
+      translateZ(halfNum(--wall-left-height));
 
     @include face_list(
       ".wall-left",
+      addUnit(--wall-left-width),
       addUnit(--wall-left-height),
       addUnit(--wall-left-depth),
-      addUnit(--wall-left-z-center),
-      addUnit(--wall-left-top-fb),
-      addUnit(--wall-left-z-fb),
       var(--wall-bg-top),
       var(--wall-bg-top),
       var(--wall-bg-front),
@@ -223,15 +315,13 @@
     left: 0;
     position: absolute;
     transform: translateY(calc(-1 * addUnit(--wall-thick)))
-      translateZ(addUnit(--wall-back-z-center));
+      translateZ(halfNum(--wall-back-height));
 
     @include face_list(
       ".wall-back",
+      addUnit(--wall-back-width),
       addUnit(--wall-back-height),
       addUnit(--wall-back-depth),
-      addUnit(--wall-back-z-center),
-      addUnit(--wall-back-top-fb),
-      addUnit(--wall-back-z-fb),
       var(--wall-back-bg-top),
       var(--wall-back-bg-top),
       var(--wall-back-bg-front),
@@ -248,15 +338,13 @@
   top: 0;
   left: 0;
   position: absolute;
-  transform: translateZ(addUnit(--floor-z-center));
+  transform: translateZ(halfNum(--floor-height));
 
   @include face_list(
     ".floor",
+    addUnit(--floor-width),
     addUnit(--floor-height),
     addUnit(--floor-depth),
-    addUnit(--floor-z-center),
-    addUnit(--floor-top-fb),
-    addUnit(--floor-z-fb),
     var(--floor-bg-top),
     var(--floor-bg-top),
     var(--floor-bg-front),
@@ -287,16 +375,14 @@
       left: 0;
       position: absolute;
       transform: translateZ(
-        calc(addUnit(--cabinet-height) + addUnit(--cabinet-top-z-center))
+        calc(addUnit(--cabinet-height) + halfNum(--cabinet-top-height))
       );
 
       @include face_list(
         ".cabinet-top",
+        addUnit(--cabinet-top-width),
         addUnit(--cabinet-top-height),
         addUnit(--cabinet-top-depth),
-        addUnit(--cabinet-top-z-center),
-        addUnit(--cabinet-top-top-fb),
-        addUnit(--cabinet-top-z-fb),
         var(--wood-bg-top),
         var(--wood-bg-top),
         var(--wood-bg-front),
@@ -311,15 +397,13 @@
       top: 0;
       left: 0;
       position: absolute;
-      transform: translateZ(addUnit(--cabinet-left-z-center));
+      transform: translateZ(halfNum(--cabinet-left-height));
 
       @include face_list(
         ".cabinet-left",
+        addUnit(--cabinet-left-width),
         addUnit(--cabinet-left-height),
         addUnit(--cabinet-left-depth),
-        addUnit(--cabinet-left-z-center),
-        addUnit(--cabinet-left-top-fb),
-        addUnit(--cabinet-left-z-fb),
         var(--wood-bg-top),
         var(--wood-bg-top),
         var(--wood-bg-front),
@@ -337,15 +421,13 @@
       transform: translateX(
           calc(addUnit(--cabinet-width) - addUnit(--cabinet-thick))
         )
-        translateZ(addUnit(--cabinet-right-z-center));
+        translateZ(halfNum(--cabinet-right-height));
 
       @include face_list(
         ".cabinet-right",
+        addUnit(--cabinet-right-width),
         addUnit(--cabinet-right-height),
         addUnit(--cabinet-right-depth),
-        addUnit(--cabinet-right-z-center),
-        addUnit(--cabinet-right-top-fb),
-        addUnit(--cabinet-right-z-fb),
         var(--wood-bg-top),
         var(--wood-bg-top),
         var(--wood-bg-front),
@@ -363,15 +445,13 @@
       transform: translateY(
           calc(addUnit(--cabinet-depth) - addUnit(--cabinet-thick))
         )
-        translateZ(addUnit(--cabinet-front-z-center));
+        translateZ(halfNum(--cabinet-front-height));
 
       @include face_list(
         ".cabinet-front",
+        addUnit(--cabinet-front-width),
         addUnit(--cabinet-front-height),
         addUnit(--cabinet-front-depth),
-        addUnit(--cabinet-front-z-center),
-        addUnit(--cabinet-front-top-fb),
-        addUnit(--cabinet-front-z-fb),
         var(--cabinet-front-bg-top),
         var(--cabinet-front-bg-top),
         var(--cabinet-front-bg-front),
@@ -386,15 +466,13 @@
       top: 0;
       left: 0;
       position: absolute;
-      transform: translateZ(addUnit(--cabinet-back-z-center));
+      transform: translateZ(halfNum(--cabinet-back-height));
 
       @include face_list(
         ".cabinet-back",
+        addUnit(--cabinet-back-width),
         addUnit(--cabinet-back-height),
         addUnit(--cabinet-back-depth),
-        addUnit(--cabinet-back-z-center),
-        addUnit(--cabinet-back-top-fb),
-        addUnit(--cabinet-back-z-fb),
         var(--wood-bg-top),
         var(--wood-bg-top),
         var(--wood-bg-front),
@@ -428,23 +506,23 @@
       height: addUnit(--step-depth);
       transform: translateZ(
         calc(
-          addUnit(--step-z-center) + addUnit(--step-height) * var(--step-count)
+          halfNum(--step-height) + addUnit(--step-height) *
+            var(--step-count)
         )
       );
 
       @include face_list(
         ".step",
+        100%,
         addUnit(--step-height),
         addUnit(--step-depth),
-        addUnit(--step-z-center),
-        addUnit(--step-top-fb),
-        addUnit(--step-z-fb),
         var(--stair-bg-top),
         var(--stair-bg-top),
         var(--stair-bg-front),
         var(--stair-bg-front),
         var(--stair-bg-left),
-        var(--stair-bg-left)
+        var(--stair-bg-left),
+        100%
       );
     }
   }
@@ -463,22 +541,23 @@
             left: 0;
             position: absolute;
             transform: translateZ(
-              calc(addUnit(--step-height) + addUnit(--step-top-z-center))
+              calc(
+                addUnit(--step-height) + halfNum(--step-top-height)
+              )
             );
 
             @include face_list(
               ".step-top",
+              100%,
               addUnit(--step-top-height),
               addUnit(--step-top-depth),
-              addUnit(--step-top-z-center),
-              addUnit(--step-top-top-fb),
-              addUnit(--step-top-z-fb),
               var(--stair-bg-top),
               var(--stair-bg-top),
               var(--stair-bg-front),
               var(--stair-bg-front),
               var(--stair-bg-left),
-              var(--stair-bg-left)
+              var(--stair-bg-left),
+              100%
             );
           }
           .step-front {
@@ -488,21 +567,20 @@
             left: 0;
             position: absolute;
             transform: translateY(addUnit(--step-depth))
-              translateZ(addUnit(--step-front-z-center));
+              translateZ(halfNum(--step-front-height));
 
             @include face_list(
               ".step-front",
+              100%,
               addUnit(--step-front-height),
               addUnit(--step-front-depth),
-              addUnit(--step-front-z-center),
-              addUnit(--step-front-top-fb),
-              addUnit(--step-front-z-fb),
               var(--stair-bg-top),
               var(--stair-bg-top),
               var(--stair-bg-front),
               var(--stair-bg-front),
               var(--stair-bg-left),
-              var(--stair-bg-left)
+              var(--stair-bg-left),
+              100%
             );
           }
         }
@@ -545,15 +623,13 @@
   .board {
     width: addUnit(--board-width);
     height: addUnit(--board-depth);
-    transform: translateZ(addUnit(--board-z-center));
+    transform: translateZ(halfNum(--board-height));
 
     @include face_list(
       ".board",
+      addUnit(--board-width),
       addUnit(--board-height),
       addUnit(--board-depth),
-      addUnit(--board-z-center),
-      addUnit(--board-top-fb),
-      addUnit(--board-z-fb),
       var(--board-bg-top),
       var(--board-bg-top),
       var(--board-bg-front),
@@ -594,22 +670,16 @@
 .seat-cushion {
   width: addUnit(--seat-cushion-width);
   height: addUnit(--seat-cushion-depth);
-  transform: translateZ(addUnit(--seat-cushion-z-center));
+  transform: translateZ(halfNum(--seat-cushion-height));
   top: calc(100% - addUnit(--seat-cushion-depth));
   left: addUnit(--seat-cushion-space);
   position: absolute;
 
-  &.seat-cushion-last {
-    width: calc(100% - addUnit(--seat-cushion-space));
-  }
-
   @include face_list(
     ".seat-cushion",
+    addUnit(--seat-cushion-width),
     addUnit(--seat-cushion-height),
     addUnit(--seat-cushion-depth),
-    addUnit(--seat-cushion-z-center),
-    addUnit(--seat-cushion-top-fb),
-    addUnit(--seat-cushion-z-fb),
     var(--seat-cushion-bg-top),
     var(--seat-cushion-bg-top),
     var(--seat-cushion-bg-front),
@@ -617,6 +687,23 @@
     var(--seat-cushion-bg-left),
     var(--seat-cushion-bg-left)
   );
+
+  &.seat-cushion-last {
+    width: calc(100% - addUnit(--seat-cushion-space));
+
+    @include face_list(
+      ".seat-cushion",
+      calc(100% - addUnit(--seat-cushion-space)),
+      addUnit(--seat-cushion-height),
+      addUnit(--seat-cushion-depth),
+      var(--seat-cushion-bg-top),
+      var(--seat-cushion-bg-top),
+      var(--seat-cushion-bg-front),
+      var(--seat-cushion-bg-front),
+      var(--seat-cushion-bg-left),
+      var(--seat-cushion-bg-left)
+    );
+  }
 }
 
 .table-mini {
@@ -631,16 +718,14 @@
     left: 0;
     position: absolute;
     transform: translateZ(
-      calc(addUnit(--table-mini-height) + addUnit(--table-mini-top-z-center))
+      calc(addUnit(--table-mini-height) + halfNum(--table-mini-top-height))
     );
 
     @include face_list(
       ".table-mini-top",
+      addUnit(--table-mini-top-width),
       addUnit(--table-mini-top-height),
       addUnit(--table-mini-top-depth),
-      addUnit(--table-mini-top-z-center),
-      addUnit(--table-mini-top-top-fb),
-      addUnit(--table-mini-top-z-fb),
       var(--glass-green-bg-top),
       var(--glass-green-bg-top),
       var(--glass-green-bg-front),
@@ -658,15 +743,13 @@
     transform: translateY(
         calc(addUnit(--table-mini-depth) - addUnit(--table-mini-thick))
       )
-      translateZ(addUnit(--table-mini-front-z-center));
+      translateZ(halfNum(--table-mini-front-height));
 
     @include face_list(
       ".table-mini-front",
+      addUnit(--table-mini-front-width),
       addUnit(--table-mini-front-height),
       addUnit(--table-mini-front-depth),
-      addUnit(--table-mini-front-z-center),
-      addUnit(--table-mini-front-top-fb),
-      addUnit(--table-mini-front-z-fb),
       var(--glass-green-bg-top),
       var(--glass-green-bg-top),
       var(--glass-green-bg-front),
@@ -683,18 +766,16 @@
     position: absolute;
     transform: translateZ(
       calc(
-        addUnit(--table-mini-back-z-center) +
+        halfNum(--table-mini-back-height) +
           addUnit(--table-mini-back-height-than)
       )
     );
 
     @include face_list(
       ".table-mini-back",
+      addUnit(--table-mini-back-width),
       addUnit(--table-mini-back-height),
       addUnit(--table-mini-back-depth),
-      addUnit(--table-mini-back-z-center),
-      addUnit(--table-mini-back-top-fb),
-      addUnit(--table-mini-back-z-fb),
       var(--glass-green-bg-top),
       var(--glass-green-bg-top),
       var(--glass-green-bg-front),
@@ -716,15 +797,13 @@
   left: 0;
   position: absolute;
   transform: translateX(addUnit(--door-width))
-    translateZ(addUnit(--door-z-center));
+    translateZ(halfNum(--door-height));
 
   @include face_list(
     ".door",
+    addUnit(--door-width),
     addUnit(--door-height),
     addUnit(--door-depth),
-    addUnit(--door-z-center),
-    addUnit(--door-top-fb),
-    addUnit(--door-z-fb),
     var(--door-bg-top),
     var(--door-bg-top),
     var(--door-bg-front),
@@ -757,15 +836,13 @@
       calc((addUnit(--room-width) - addUnit(--projector-width)) / 2)
     )
     translateY(addUnit(--projector-start-y))
-    translateZ(calc(addUnit(--room-height) - addUnit(--projector-z-center)));
+    translateZ(calc(addUnit(--room-height) - halfNum(--projector-height)));
 
   @include face_list(
     ".projector",
+    addUnit(--projector-width),
     addUnit(--projector-height),
     addUnit(--projector-depth),
-    addUnit(--projector-z-center),
-    addUnit(--projector-top-fb),
-    addUnit(--projector-z-fb),
     var(--projector-bg-top),
     var(--projector-bg-top),
     var(--projector-bg-front),
@@ -785,15 +862,13 @@
   top: 0;
   left: 50%;
   position: absolute;
-  transform: translateX(-50%) translateZ(calc(addUnit(--light-height) / 2));
+  transform: translateX(-50%) translateZ(halfNum(--light-height));
 
   @include face_list(
     ".light",
+    addUnit(--light-width),
     addUnit(--light-height),
     addUnit(--light-depth),
-    addUnit(--light-z-center),
-    addUnit(--light-top-fb),
-    addUnit(--light-z-fb),
     var(--light-bg-top),
     var(--light-bg-top),
     var(--light-bg-front),
