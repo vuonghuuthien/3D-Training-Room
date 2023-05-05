@@ -15,6 +15,12 @@ import {
 export class AppComponent implements AfterViewInit, OnInit {
   @ViewChild('baseEl') baseEl: ElementRef | undefined;
 
+  img_arrow = "assets/arrow.png";
+  img_logo = "assets/logo.png";
+  img_people_guitarist = "assets/people_guitarist.png";
+  img_people_laptop = "assets/people_laptop.png";
+  img_people_praise = "assets/people_praise.png";
+
   title = '3D Training Room';
 
   base = {

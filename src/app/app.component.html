@@ -13,18 +13,18 @@
     <div class="controls">
       <div class="control-lr">
         <div class="arrow-left arrow" (click)="rotateLeft()">
-          <img src="assets/arrow.png" alt="" />
+          <img [src]="img_arrow" alt="" />
         </div>
         <div class="arrow-right arrow" (click)="rotateRight()">
-          <img src="assets/arrow.png" alt="" />
+          <img [src]="img_arrow" alt="" />
         </div>
       </div>
       <div class="control-ud">
         <div class="arrow-up arrow" (click)="rotateUp()">
-          <img src="assets/arrow.png" alt="" />
+          <img [src]="img_arrow" alt="" />
         </div>
         <div class="arrow-down arrow" (click)="rotateDown()">
-          <img src="assets/arrow.png" alt="" />
+          <img [src]="img_arrow" alt="" />
         </div>
       </div>
     </div>
@@ -58,7 +58,7 @@
             >
               <div class="draw-wall">
                 <div class="logo" [style.--logo-height]="logo_size.height">
-                  <img src="assets/logo.png" alt="" />
+                  <img [src]="img_logo" alt="" />
                 </div>
                 <div class="slogan-cont">
                   <div class="label">OUR SLOGAN</div>
@@ -263,7 +263,7 @@
                 class="people people_guitarist"
                 [style.--height]="people.height_md"
               >
-                <img src="assets/people_guitarist.png" alt="" />
+                <img [src]="img_people_guitarist" alt="" />
               </div>
 
               <div
@@ -271,7 +271,7 @@
                 class="people people_laptop"
                 [style.--height]="people.height_lg"
               >
-                <img src="assets/people_laptop.png" alt="" />
+                <img [src]="img_people_laptop" alt="" />
               </div>
 
               <div
@@ -546,7 +546,7 @@
       </div>
 
       <div class="people people_praise" [style.--height]="people.height_xl">
-        <img src="assets/people_praise.png" alt="" />
+        <img [src]="img_people_praise" alt="" />
       </div>
     </div>
   </div>
