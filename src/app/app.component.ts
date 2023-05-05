@@ -120,6 +120,20 @@ export class AppComponent implements AfterViewInit, OnInit {
     depth: 200 * this.scale,
   };
 
+  // Chair Detail
+  chair_size = {
+    width: 700 * this.scale,
+    height: 600 * this.scale,
+    depth: 700 * this.scale,
+  };
+
+  // Chair Cushion Detail
+  chair_cushion_size = {
+    width: 600 * this.scale,
+    height: 150 * this.scale,
+    depth: 700 * this.scale,
+  };
+
   projector_light_start_y = this.projector_start_y;
   projector_light_size = {
     width_sm: this.projector_size.width,

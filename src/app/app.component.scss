@@ -314,6 +314,104 @@
   }
 }
 
+@mixin face_list_chair(
+  $selector,
+  $width,
+  $height,
+  $depth,
+  $bg_top,
+  $bg_bottom,
+  $bg_front,
+  $bg_back,
+  $bg_left,
+  $bg_right,
+  $width_percent: 0,
+  $height_percent: 0,
+  $depth_percent: 0
+) {
+  $half-width: calc(#{$width} / 2);
+  $half-height: calc(#{$height} / 2);
+  $half-depth: calc(#{$depth} / 2);
+
+  & {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: $bg_top;
+  }
+
+  #{$selector}__top,
+  #{$selector}__bottom {
+    width: $width;
+    height: $depth;
+  }
+
+  #{$selector}__front,
+  #{$selector}__back {
+    width: $width;
+    height: $height;
+  }
+
+  #{$selector}__left,
+  #{$selector}__right {
+    width: $height;
+    height: $depth;
+  }
+
+  #{$selector}__top {
+    transform: rotateX(0deg) translateZ($half-height);
+    border: 3px solid $bg_top;
+    border-bottom: 0;
+  }
+  #{$selector}__bottom {
+    transform: rotateX(180deg) translateZ($half-height);
+    border: 3px solid $bg_bottom;
+    border-top: 0;
+    border-bottom: 0;
+  }
+  #{$selector}__front {
+    transform: rotateX(-90deg) translateZ($half-depth);
+    border: 3px solid $bg_front;
+    border-top: 0;
+    border-bottom: 0;
+  }
+  #{$selector}__back {
+    transform: rotateX(90deg) translateZ($half-depth);
+    border: 3px solid $bg_back;
+    border-top: 0;
+  }
+  #{$selector}__left {
+    @if $width_percent == 0 {
+      transform: rotateY(-90deg) translateZ($half-width);
+    } @else {
+      left: calc(-1 * $half-height);
+      transform: rotateY(-90deg);
+    }
+    border: 3px solid $bg_left;
+  }
+  #{$selector}__right {
+    @if $width_percent == 0 {
+      transform: rotateY(90deg) translateZ($half-width);
+    } @else {
+      left: calc(100% - $half-height);
+      transform: rotateY(90deg);
+    }
+    border: 3px solid $bg_right;
+  }
+
+  #{$selector}__top,
+  #{$selector}__bottom,
+  #{$selector}__front,
+  #{$selector}__back,
+  #{$selector}__left,
+  #{$selector}__right {
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+}
+
 .env {
   display: flex;
   min-height: 100vh;
@@ -340,12 +438,12 @@
       position: absolute;
       width: 100%;
       height: 100%;
-      z-index: 1000;
 
       .control-lr,
       .control-ud {
         display: flex;
         position: absolute;
+        z-index: 1000;
         .arrow {
           height: 20px;
           width: fit-content;
@@ -1097,5 +1195,80 @@
 
   .light__front {
     opacity: 0.2;
+  }
+}
+
+.chair {
+  width: addUnit(--chair-width);
+  height: addUnit(--chair-depth);
+  top: 0;
+  left: 0;
+  position: absolute;
+  transform: translateX(addUnit(--chair-width))
+    translateZ(calc(halfNum(--chair-height) + 1px));
+
+  @include face_list_chair(
+    ".chair",
+    addUnit(--chair-width),
+    addUnit(--chair-height),
+    addUnit(--chair-depth),
+    var(--chair-bg-top),
+    var(--chair-bg-top),
+    var(--chair-bg-front),
+    var(--chair-bg-front),
+    var(--chair-bg-left),
+    var(--chair-bg-left)
+  );
+
+  &.chair-1 {
+    top: 85%;
+    left: -10%;
+    transform: translateX(addUnit(--chair-width))
+      translateZ(calc(halfNum(--chair-height) + 1px)) rotateZ(230deg);
+  }
+
+  &.chair-2 {
+    top: 63%;
+    left: -10%;
+    transform: translateX(addUnit(--chair-width))
+      translateZ(calc(halfNum(--chair-height) + 1px)) rotateZ(-60deg);
+  }
+
+  &.chair-3 {
+    top: 63%;
+    left: 44%;
+    transform: translateX(addUnit(--chair-width))
+      translateZ(calc(halfNum(--chair-height) + 1px)) rotateZ(50deg);
+  }
+}
+
+.chair-cushion {
+  width: addUnit(--chair-cushion-width);
+  height: addUnit(--chair-cushion-depth);
+  top: 5%;
+  right: 100%;
+  position: absolute;
+  transform: translateX(addUnit(--chair-cushion-width))
+    translateZ(calc(halfNum(--chair-cushion-height) - halfNum(--chair-height)));
+
+  @include face_list(
+    ".chair-cushion",
+    addUnit(--chair-cushion-width),
+    addUnit(--chair-cushion-height),
+    addUnit(--chair-cushion-depth),
+    var(--chair-cushion-bg-top),
+    var(--chair-cushion-bg-top),
+    var(--chair-cushion-bg-front),
+    var(--chair-cushion-bg-front),
+    var(--chair-cushion-bg-left),
+    var(--chair-cushion-bg-left)
+  );
+
+  &.chair-cushion-for-back {
+    transform: translateX(addUnit(--chair-cushion-width))
+      translateZ(
+        calc(halfNum(--chair-cushion-height) - halfNum(--chair-height))
+      )
+      rotateX(10deg);
   }
 }

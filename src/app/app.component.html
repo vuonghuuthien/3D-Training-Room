@@ -97,7 +97,8 @@
       >
         <div
           *ngFor="let count of [].constructor(7); index as i"
-          class="cabinet" [class]="'cabinet-' + (i + 1)"
+          class="cabinet"
+          [class]="'cabinet-' + (i + 1)"
           [style.--cabinet-count]="i"
           [style.--cabinet-width]="cabinet_size.width"
           [style.--cabinet-height]="cabinet_size.height"
@@ -492,6 +493,33 @@
                 [class]="'face light__' + face"
               ></div>
             </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Chair -->
+      <div
+        *ngFor="let count of [].constructor(3); index as i"
+        class="chair"
+        [class]="'chair-' + (i + 1)"
+        [style.--chair-width]="chair_size.width"
+        [style.--chair-height]="chair_size.height"
+        [style.--chair-depth]="chair_size.depth"
+      >
+        <div *ngFor="let face of face_list" [class]="'face chair__' + face">
+          <!-- Chair Cushion -->
+          <div
+            *ngIf="face == 'top' || face == 'back'"
+            class="chair-cushion"
+            [class]="'chair-cushion-for-' + face"
+            [style.--chair-cushion-width]="chair_cushion_size.width"
+            [style.--chair-cushion-height]="chair_cushion_size.height"
+            [style.--chair-cushion-depth]="chair_cushion_size.depth"
+          >
+            <div
+              *ngFor="let face of face_list"
+              [class]="'face chair-cushion__' + face"
+            ></div>
           </div>
         </div>
       </div>
