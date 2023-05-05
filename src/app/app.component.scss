@@ -1272,3 +1272,72 @@
       rotateX(10deg);
   }
 }
+
+.draw-wall-cont {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  .draw-wall {
+    width: addUnit(--draw-wall-width);
+    height: addUnit(--draw-wall-height);
+    transform: rotateZ(-90deg);
+    // transform: translateX(calc(halfNum(--draw-wall-width) - 300%)) translateY(calc(-1 * halfNum(--draw-wall-height)));
+
+    .logo {
+      position: absolute;
+      top: 5%;
+      left: 90%;
+      height: addUnit(--logo-height);
+      img {
+        height: 100%;
+      }
+    }
+
+    .slogan-cont {
+      position: absolute;
+      top: 10%;
+      left: -40%;
+      * {
+        font-family: "Bai Jamjuree", sans-serif;
+        font-size: 18px;
+        white-space: nowrap;
+      }
+
+      .label {
+        font-size: 0.4em;
+        color: var(--slogan-label);
+      }
+
+      .slogan {
+        margin-top: 3px;
+        color: var(--slogan);
+        position: relative;
+
+        &::before, &::after {
+          position: absolute;
+          font-size: 1.2em;
+          font-weight: 600;
+        }
+        &::before {
+          content: "\201C";
+          top: -5%;
+        }
+        &::after {
+          content: "\201D";
+          right: 23%;
+          bottom: -26%;
+        }
+
+        div:first-of-type {
+          margin-left: 1em;
+        }
+
+        div:last-of-type {
+          margin-top: 0.2em;
+        }
+      }
+    }
+  }
+}

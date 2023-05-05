@@ -170,6 +170,11 @@ export class AppComponent implements AfterViewInit, OnInit {
     ),
   };
 
+  // Logo Size
+  logo_size = {
+    height: 200 * this.scale,
+  }
+
   constructor(private _renderer: Renderer2) {}
 
   ngAfterViewInit(): void {

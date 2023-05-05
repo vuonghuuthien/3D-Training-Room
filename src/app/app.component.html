@@ -37,7 +37,7 @@
       [style.--room-height]="room.height"
       [style.--room-depth]="room.depth"
     >
-      <!-- Wall & Col-->
+      <!-- Wall & Col -->
       <div class="wall-cont" [style.--wall-thick]="wall_thick">
         <div
           class="wall-left"
@@ -48,7 +48,28 @@
           <div
             *ngFor="let face of face_list"
             [class]="'face wall-left__' + face"
-          ></div>
+          >
+            <!-- Draw Wall -->
+            <div
+              *ngIf="face == 'right'"
+              class="draw-wall-cont"
+              [style.--draw-wall-width]="room.depth"
+              [style.--draw-wall-height]="room.width"
+            >
+              <div class="draw-wall">
+                <div class="logo" [style.--logo-height]="logo_size.height">
+                  <img src="assets/logo.png" alt="" />
+                </div>
+                <div class="slogan-cont">
+                  <div class="label">OUR SLOGAN</div>
+                  <div class="slogan">
+                    <div>Your Satisfaction</div>
+                    <div>Our Success</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
         <div
           class="wall-back"

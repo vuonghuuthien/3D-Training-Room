@@ -56,6 +56,10 @@
   --board-bg-left: #e8e8e8;
   --board-bg-front: #d6d6d6;
 
+  // --seat-cushion-bg-top: #fd853a;
+  // --seat-cushion-bg-left: #fb6514;
+  // --seat-cushion-bg-front: #ec4a0a;
+
   --seat-cushion-bg-top: linear-gradient(90deg, #00c9ff 0%, #92fe9d 100%);
   --seat-cushion-bg-left: linear-gradient(90deg, #00c9ff 0%, #92fe9d 100%);
   --seat-cushion-bg-front: linear-gradient(90deg, #00c9ff 0%, #92fe9d 100%);
@@ -93,6 +97,9 @@
   --chair-cushion-bg-top: #fcfcfc;
   --chair-cushion-bg-left: #e8e8e8;
   --chair-cushion-bg-front: #d6d6d6;
+
+  --slogan-label: rgba(18, 183, 106, 1);
+  --slogan: rgba(11, 165, 236, 1);
 }
 
 * {
@@ -100,6 +107,7 @@
   padding: 0;
   box-sizing: border-box;
   transform-style: preserve-3d;
+  font-family: "Bai Jamjuree", sans-serif;
   font-family: "Poppins", sans-serif;
 }
 
