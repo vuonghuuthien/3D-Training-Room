@@ -472,6 +472,23 @@
   }
 }
 
+@media screen and (max-width: 1280px) {
+  .env {
+    flex-direction: column;
+    .env-left {
+      max-width: none;
+      height: 100%;
+      flex: auto;
+      align-items: center;
+      padding: unset;
+    }
+    .env-right {
+      height: 100%;
+      flex: auto;
+    }
+  }
+}
+
 .title {
   font-size: 45px;
   font-weight: 500;

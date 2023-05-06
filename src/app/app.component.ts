@@ -39,7 +39,7 @@ export class AppComponent implements AfterViewInit, OnInit {
     rotateX: 70, //deg
     rotateY: 0, //deg
     rotateZ: 40, //deg
-    translateX: 100, //px
+    translateX: 50, //px
     translateY: 0, //px
     translateZ: -50, //px
   };
