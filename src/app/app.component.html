@@ -28,36 +28,18 @@
         </div>
       </div>
     </div>
-    <div
-      #baseEl
-      class="base"
-      [style.--base-width]="room.width"
-      [style.--base-depth]="room.depth"
-      [style.--room-width]="room.width"
-      [style.--room-height]="room.height"
-      [style.--room-depth]="room.depth"
-    >
+    <div #baseEl class="base">
       <!-- Wall & Col -->
-      <div class="wall-cont" [style.--wall-thick]="wall_thick">
-        <div
-          class="wall-left"
-          [style.--wall-left-width]="wall_thick"
-          [style.--wall-left-height]="room.height"
-          [style.--wall-left-depth]="room.depth"
-        >
+      <div class="wall-cont">
+        <div class="wall-left">
           <div
             *ngFor="let face of face_list"
             [class]="'face wall-left__' + face"
           >
             <!-- Draw Wall -->
-            <div
-              *ngIf="face == 'right'"
-              class="draw-wall-cont"
-              [style.--draw-wall-width]="room.depth"
-              [style.--draw-wall-height]="room.width"
-            >
+            <div *ngIf="face == 'right'" class="draw-wall-cont">
               <div class="draw-wall">
-                <div class="logo" [style.--logo-height]="logo_size.height">
+                <div class="logo">
                   <img [src]="img_logo" alt="" />
                 </div>
                 <div class="slogan-cont">
@@ -71,24 +53,13 @@
             </div>
           </div>
         </div>
-        <div
-          class="wall-back"
-          [style.--wall-back-width]="room.width"
-          [style.--wall-back-height]="room.height"
-          [style.--wall-back-depth]="wall_thick"
-        >
+        <div class="wall-back">
           <div
             *ngFor="let face of face_list"
             [class]="'face wall-back__' + face"
           ></div>
         </div>
-        <div
-          class="col"
-          [style.--col-width]="col_size.width"
-          [style.--col-height]="col_size.height"
-          [style.--col-depth]="col_size.depth"
-          [style.--col-start-y]="col_start_y"
-        >
+        <div class="col">
           <div
             *ngFor="let face of face_list"
             [class]="'face col__' + face"
@@ -97,12 +68,7 @@
       </div>
 
       <!-- Floor -->
-      <div
-        class="floor"
-        [style.--floor-width]="room.width"
-        [style.--floor-height]="wall_thick"
-        [style.--floor-depth]="room.depth"
-      >
+      <div class="floor">
         <div
           *ngFor="let face of face_list"
           [class]="'face floor__' + face"
@@ -110,71 +76,38 @@
       </div>
 
       <!-- Cabinet -->
-      <div
-        class="cabinet-cont"
-        [style.--cabinet-cont-depth]="cabinet_size.depth"
-        [style.--cabinet_cont_start_z]="cabinet_cont_start_z"
-        [style.--cabinet-thick]="cabinet_size.thick"
-      >
+      <div class="cabinet-cont">
         <div
           *ngFor="let count of [].constructor(7); index as i"
           class="cabinet"
           [class]="'cabinet-' + (i + 1)"
           [style.--cabinet-count]="i"
-          [style.--cabinet-width]="cabinet_size.width"
-          [style.--cabinet-height]="cabinet_size.height"
-          [style.--cabinet-depth]="cabinet_size.depth"
         >
-          <div
-            class="cabinet-top"
-            [style.--cabinet-top-width]="cabinet_size.width"
-            [style.--cabinet-top-height]="cabinet_size.thick"
-            [style.--cabinet-top-depth]="cabinet_size.depth"
-          >
+          <div class="cabinet-top">
             <div
               *ngFor="let face of face_list"
               [class]="'face cabinet-top__' + face"
             ></div>
           </div>
-          <div
-            class="cabinet-left"
-            [style.--cabinet-left-width]="cabinet_size.thick"
-            [style.--cabinet-left-height]="cabinet_size.height"
-            [style.--cabinet-left-depth]="cabinet_size.depth"
-          >
+          <div class="cabinet-left">
             <div
               *ngFor="let face of face_list"
               [class]="'face cabinet-left__' + face"
             ></div>
           </div>
-          <div
-            class="cabinet-right"
-            [style.--cabinet-right-width]="cabinet_size.thick"
-            [style.--cabinet-right-height]="cabinet_size.height"
-            [style.--cabinet-right-depth]="cabinet_size.depth"
-          >
+          <div class="cabinet-right">
             <div
               *ngFor="let face of face_list"
               [class]="'face cabinet-right__' + face"
             ></div>
           </div>
-          <div
-            class="cabinet-front"
-            [style.--cabinet-front-width]="cabinet_size.width"
-            [style.--cabinet-front-height]="cabinet_size.height"
-            [style.--cabinet-front-depth]="cabinet_size.thick"
-          >
+          <div class="cabinet-front">
             <div
               *ngFor="let face of face_list"
               [class]="'face cabinet-front__' + face"
             ></div>
           </div>
-          <div
-            class="cabinet-back"
-            [style.--cabinet-back-width]="cabinet_size.width"
-            [style.--cabinet-back-height]="cabinet_size.height"
-            [style.--cabinet-back-depth]="cabinet_size.thick"
-          >
+          <div class="cabinet-back">
             <div
               *ngFor="let face of face_list"
               [class]="'face cabinet-back__' + face"
@@ -185,11 +118,7 @@
 
       <!-- Stair Style 1 -->
       <div class="stair-cont stair-style-1" *ngIf="stair_style == 1">
-        <div
-          class="stair-step stair-step-lg"
-          [style.--step-height]="step_lg_size.height"
-          [style.--step-depth]="step_lg_size.depth"
-        >
+        <div class="stair-step stair-step-lg">
           <div
             *ngFor="let count of [].constructor(this.step_lg_num); index as i"
             class="step"
@@ -201,12 +130,7 @@
             ></div>
           </div>
         </div>
-        <div
-          class="stair-step stair-step-sm"
-          [style.--step-height]="step_sm_size.height"
-          [style.--step-depth]="step_sm_size.depth"
-          [style.--stair-sm-width]="step_sm_size.width"
-        >
+        <div class="stair-step stair-step-sm">
           <div
             *ngFor="let count of [].constructor(this.step_sm_num); index as i"
             class="step"
@@ -220,26 +144,14 @@
         </div>
       </div>
       <!-- Stair Style 2 -->
-      <div
-        class="stair-cont stair-style-2"
-        [style.--step-thick]="step_thick"
-        *ngIf="stair_style == 2"
-      >
-        <div
-          class="stair-step stair-step-lg"
-          [style.--step-height]="step_lg_size.height"
-          [style.--step-depth]="step_lg_size.depth"
-        >
+      <div class="stair-cont stair-style-2" *ngIf="stair_style == 2">
+        <div class="stair-step stair-step-lg">
           <div
             *ngFor="let count of [].constructor(this.step_lg_num); index as i"
             class="step"
             [style.--step-count]="i"
           >
-            <div
-              class="step-top"
-              [style.--step-top-height]="step_thick"
-              [style.--step-top-depth]="step_lg_size.depth"
-            >
+            <div class="step-top">
               <div
                 *ngFor="let face of face_list"
                 [class]="'face step-top__' + face"
@@ -247,10 +159,6 @@
               <div
                 class="seat-cushion"
                 [class.seat-cushion-last]="i + 1 == this.step_lg_num"
-                [style.--seat-cushion-width]="seat_cushion_size.width"
-                [style.--seat-cushion-height]="seat_cushion_size.height"
-                [style.--seat-cushion-depth]="seat_cushion_size.depth"
-                [style.--seat-cushion-space]="seat_cushion_size.space"
               >
                 <div
                   *ngFor="let face of face_list"
@@ -258,36 +166,16 @@
                 ></div>
               </div>
 
-              <div
-                *ngIf="i == 3"
-                class="people people_guitarist"
-                [style.--height]="people.height_md"
-              >
+              <div *ngIf="i == 3" class="people people_guitarist">
                 <img [src]="img_people_guitarist" alt="" />
               </div>
 
-              <div
-                *ngIf="i == 4"
-                class="people people_laptop"
-                [style.--height]="people.height_lg"
-              >
+              <div *ngIf="i == 4" class="people people_laptop">
                 <img [src]="img_people_laptop" alt="" />
               </div>
 
-              <div
-                *ngIf="i == 0"
-                class="table-mini table-mini-1"
-                [style.--table-mini-width]="table_mini_size.width"
-                [style.--table-mini-height]="table_mini_size.height"
-                [style.--table-mini-depth]="table_mini_size.depth"
-                [style.--table-mini-thick]="table_mini_size.thick"
-              >
-                <div
-                  class="table-mini-top"
-                  [style.--table-mini-top-width]="table_mini_size.width"
-                  [style.--table-mini-top-height]="table_mini_size.thick"
-                  [style.--table-mini-top-depth]="table_mini_size.depth"
-                >
+              <div *ngIf="i == 0" class="table-mini table-mini-1">
+                <div class="table-mini-top">
                   <div
                     *ngFor="let face of face_list"
                     [class]="'face table-mini-top__' + face"
@@ -297,9 +185,6 @@
                   *ngFor="let count of [].constructor(2); index as i"
                   class="table-mini-front"
                   [class]="'table-mini-front-' + (i + 1)"
-                  [style.--table-mini-front-width]="table_mini_size.border"
-                  [style.--table-mini-front-height]="table_mini_size.height"
-                  [style.--table-mini-front-depth]="table_mini_size.thick"
                 >
                   <div
                     *ngFor="let face of face_list"
@@ -310,12 +195,6 @@
                   *ngFor="let count of [].constructor(2); index as i"
                   class="table-mini-back"
                   [class]="'table-mini-back-' + (i + 1)"
-                  [style.--table-mini-back-width]="table_mini_size.border"
-                  [style.--table-mini-back-height]="table_mini_size.height_back"
-                  [style.--table-mini-back-depth]="table_mini_size.thick"
-                  [style.--table-mini-back-height-than]="
-                    table_mini_size.height - table_mini_size.height_back
-                  "
                 >
                   <div
                     *ngFor="let face of face_list"
@@ -324,20 +203,8 @@
                 </div>
               </div>
 
-              <div
-                *ngIf="i == 2"
-                class="table-mini table-mini-2"
-                [style.--table-mini-width]="table_mini_size.width"
-                [style.--table-mini-height]="table_mini_size.height"
-                [style.--table-mini-depth]="table_mini_size.depth"
-                [style.--table-mini-thick]="table_mini_size.thick"
-              >
-                <div
-                  class="table-mini-top"
-                  [style.--table-mini-top-width]="table_mini_size.width"
-                  [style.--table-mini-top-height]="table_mini_size.thick"
-                  [style.--table-mini-top-depth]="table_mini_size.depth"
-                >
+              <div *ngIf="i == 2" class="table-mini table-mini-2">
+                <div class="table-mini-top">
                   <div
                     *ngFor="let face of face_list"
                     [class]="'face table-mini-top__' + face"
@@ -347,9 +214,6 @@
                   *ngFor="let count of [].constructor(2); index as i"
                   class="table-mini-front"
                   [class]="'table-mini-front-' + (i + 1)"
-                  [style.--table-mini-front-width]="table_mini_size.border"
-                  [style.--table-mini-front-height]="table_mini_size.height"
-                  [style.--table-mini-front-depth]="table_mini_size.thick"
                 >
                   <div
                     *ngFor="let face of face_list"
@@ -360,12 +224,6 @@
                   *ngFor="let count of [].constructor(2); index as i"
                   class="table-mini-back"
                   [class]="'table-mini-back-' + (i + 1)"
-                  [style.--table-mini-back-width]="table_mini_size.border"
-                  [style.--table-mini-back-height]="table_mini_size.height_back"
-                  [style.--table-mini-back-depth]="table_mini_size.thick"
-                  [style.--table-mini-back-height-than]="
-                    table_mini_size.height - table_mini_size.height_back
-                  "
                 >
                   <div
                     *ngFor="let face of face_list"
@@ -374,20 +232,8 @@
                 </div>
               </div>
 
-              <div
-                *ngIf="i == 3"
-                class="table-mini table-mini-3"
-                [style.--table-mini-width]="table_mini_size.width"
-                [style.--table-mini-height]="table_mini_size.height"
-                [style.--table-mini-depth]="table_mini_size.depth"
-                [style.--table-mini-thick]="table_mini_size.thick"
-              >
-                <div
-                  class="table-mini-top"
-                  [style.--table-mini-top-width]="table_mini_size.width"
-                  [style.--table-mini-top-height]="table_mini_size.thick"
-                  [style.--table-mini-top-depth]="table_mini_size.depth"
-                >
+              <div *ngIf="i == 3" class="table-mini table-mini-3">
+                <div class="table-mini-top">
                   <div
                     *ngFor="let face of face_list"
                     [class]="'face table-mini-top__' + face"
@@ -397,9 +243,6 @@
                   *ngFor="let count of [].constructor(2); index as i"
                   class="table-mini-front"
                   [class]="'table-mini-front-' + (i + 1)"
-                  [style.--table-mini-front-width]="table_mini_size.border"
-                  [style.--table-mini-front-height]="table_mini_size.height"
-                  [style.--table-mini-front-depth]="table_mini_size.thick"
                 >
                   <div
                     *ngFor="let face of face_list"
@@ -410,12 +253,6 @@
                   *ngFor="let count of [].constructor(2); index as i"
                   class="table-mini-back"
                   [class]="'table-mini-back-' + (i + 1)"
-                  [style.--table-mini-back-width]="table_mini_size.border"
-                  [style.--table-mini-back-height]="table_mini_size.height_back"
-                  [style.--table-mini-back-depth]="table_mini_size.thick"
-                  [style.--table-mini-back-height-than]="
-                    table_mini_size.height - table_mini_size.height_back
-                  "
                 >
                   <div
                     *ngFor="let face of face_list"
@@ -424,11 +261,7 @@
                 </div>
               </div>
             </div>
-            <div
-              class="step-front"
-              [style.--step-front-height]="step_lg_size.height"
-              [style.--step-front-depth]="step_thick"
-            >
+            <div class="step-front">
               <div
                 *ngFor="let face of face_list"
                 [class]="'face step-front__' + face"
@@ -436,12 +269,7 @@
             </div>
           </div>
         </div>
-        <div
-          class="stair-step stair-step-sm"
-          [style.--step-height]="step_sm_size.height"
-          [style.--step-depth]="step_sm_size.depth"
-          [style.--stair-sm-width]="step_sm_size.width"
-        >
+        <div class="stair-step stair-step-sm">
           <div
             *ngFor="let count of [].constructor(this.step_sm_num); index as i"
             class="step"
@@ -456,13 +284,8 @@
       </div>
 
       <!-- Board -->
-      <div class="board-cont hide">
-        <div
-          class="board"
-          [style.--board-width]="board_size.width"
-          [style.--board-height]="board_size.height"
-          [style.--board-depth]="wall_thick"
-        >
+      <div class="board-cont">
+        <div class="board">
           <div
             *ngFor="let face of face_list"
             [class]="'face board__' + face"
@@ -475,9 +298,6 @@
         *ngFor="let count of [].constructor(2); index as i"
         class="door"
         [class]="'door-room-' + (i + 1)"
-        [style.--door-width]="door_size.width"
-        [style.--door-height]="door_size.height"
-        [style.--door-depth]="door_size.depth"
       >
         <div
           *ngFor="let face of face_list"
@@ -486,29 +306,10 @@
       </div>
 
       <!-- Projector -->
-      <div
-        class="projector"
-        [style.--projector-width]="projector_size.width"
-        [style.--projector-height]="projector_size.height"
-        [style.--projector-depth]="projector_size.depth"
-        [style.--projector-start-y]="projector_start_y"
-      >
+      <div class="projector">
         <div *ngFor="let face of face_list" [class]="'face projector__' + face">
           <div *ngIf="face == 'front'" class="projector-light">
-            <div
-              class="light"
-              [style.--light-width-sm]="projector_light_size.width_sm"
-              [style.--light-height-sm]="projector_light_size.height_sm"
-              [style.--light-width]="projector_light_size.width"
-              [style.--light-height]="projector_light_size.height"
-              [style.--light-depth]="projector_light_size.depth"
-              [style.--light-angle-width]="projector_light_angle.width"
-              [style.--light-angle-height]="projector_light_angle.height"
-              [style.--light-depth-face-lr]="projector_light_depth_face.lr"
-              [style.--light-depth-face-bottom]="
-                projector_light_depth_face.bottom
-              "
-            >
+            <div class="light">
               <div
                 *ngFor="let face of face_list"
                 [class]="'face light__' + face"
@@ -523,9 +324,6 @@
         *ngFor="let count of [].constructor(3); index as i"
         class="chair"
         [class]="'chair-' + (i + 1)"
-        [style.--chair-width]="chair_size.width"
-        [style.--chair-height]="chair_size.height"
-        [style.--chair-depth]="chair_size.depth"
       >
         <div *ngFor="let face of face_list" [class]="'face chair__' + face">
           <!-- Chair Cushion -->
@@ -533,9 +331,6 @@
             *ngIf="face == 'top' || face == 'back'"
             class="chair-cushion"
             [class]="'chair-cushion-for-' + face"
-            [style.--chair-cushion-width]="chair_cushion_size.width"
-            [style.--chair-cushion-height]="chair_cushion_size.height"
-            [style.--chair-cushion-depth]="chair_cushion_size.depth"
           >
             <div
               *ngFor="let face of face_list"
@@ -545,7 +340,7 @@
         </div>
       </div>
 
-      <div class="people people_praise" [style.--height]="people.height_xl">
+      <div class="people people_praise">
         <img [src]="img_people_praise" alt="" />
       </div>
     </div>
