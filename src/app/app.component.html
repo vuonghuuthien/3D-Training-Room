@@ -156,6 +156,8 @@
                 *ngFor="let face of face_list"
                 [class]="'face step-top__' + face"
               ></div>
+
+              <!-- Seat Cushion -->
               <div
                 class="seat-cushion"
                 [class.seat-cushion-last]="i + 1 == this.step_lg_num"
@@ -163,6 +165,18 @@
                 <div
                   *ngFor="let face of face_list"
                   [class]="'face seat-cushion__' + face"
+                ></div>
+              </div>
+
+              <!-- Table Wall -->
+              <div
+                class="table-wall"
+                [class.table-wall-last]="i + 1 == this.step_lg_num"
+                [class.table-wall-horizontal]="i == 0 || i == 1"
+              >
+                <div
+                  *ngFor="let face of face_list"
+                  [class]="'face table-wall__' + face"
                 ></div>
               </div>
 

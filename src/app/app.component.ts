@@ -254,6 +254,16 @@ export class AppComponent implements AfterViewInit, OnInit {
     depth: 700 * this.scale,
   };
 
+  // Table Wall Detail
+  table_wall_size = {
+    width: 20 * this.scale,
+    height: 500 * this.scale,
+    depth: 250 * this.scale,
+    border_radius: 50 * this.scale,
+    start_y: this.step_lg_size.depth,
+    start_z: this.step_lg_size.height,
+  };
+
   constructor(private _renderer: Renderer2, private _element: ElementRef) {}
 
   ngAfterViewInit(): void {
@@ -452,6 +462,10 @@ export class AppComponent implements AfterViewInit, OnInit {
 
     for (const [key, value] of Object.entries(this.chair_cushion_size)) {
       this.setVariableCSS(`chair-cushion-${key}`, value);
+    }
+
+    for (const [key, value] of Object.entries(this.table_wall_size)) {
+      this.setVariableCSS(`table-wall-${key}`, value);
     }
   }
 }
