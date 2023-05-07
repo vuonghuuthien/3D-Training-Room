@@ -259,16 +259,18 @@
     background: $bg_front;
   }
   #{$selector}__back {
-    transform: rotateX(90deg) translateY(calc($half-height - $half-height-sm))
+    transform: rotateX(90deg)
+      translateY(calc(#{$half-height} - #{$half-height-sm}))
       translateZ($half-depth);
     background: $bg_back;
   }
   #{$selector}__left {
-    transform: rotateY(-90deg) translateZ(calc($half-width-sm + $diff-width-lt))
+    transform: rotateY(-90deg)
+      translateZ(calc(#{$half-width-sm} + #{$diff-width-lt}))
       rotateX($angle_width);
     &::before {
       right: $height_sm;
-      border-left: calc($height - $height_sm) solid transparent;
+      border-left: calc(#{$height} - #{$height_sm}) solid transparent;
       border-bottom: $depth-face-lr solid $bg_left;
     }
     &::after {
@@ -277,11 +279,12 @@
     }
   }
   #{$selector}__right {
-    transform: rotateY(90deg) translateZ(calc($half-width-sm + $diff-width-lt))
+    transform: rotateY(90deg)
+      translateZ(calc(#{$half-width-sm} + #{$diff-width-lt}))
       rotateX($angle_width);
     &::before {
       left: $height_sm;
-      border-right: calc($height - $height_sm) solid transparent;
+      border-right: calc(#{$height} - #{$height_sm}) solid transparent;
       border-bottom: $depth-face-lr solid $bg_right;
     }
     &::after {
