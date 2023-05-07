@@ -15,6 +15,7 @@ import {
 export class AppComponent implements AfterViewInit, OnInit {
   @ViewChild('baseEl') baseEl: ElementRef | undefined;
 
+  // img_arrow = 'https://drive.google.com/uc?export=view&id=1IyESorGBqL_dPzL_sBjBZJSS-35XUUv4';
   img_arrow = 'assets/arrow.png';
   img_logo = 'assets/logo.png';
   img_people_guitarist = 'assets/people_guitarist.png';
@@ -35,6 +36,7 @@ export class AppComponent implements AfterViewInit, OnInit {
 
   // Base Detail
   base = {
+    scale: 1,
     perspective: 500, //px
     rotateX: 70, //deg
     rotateY: 0, //deg
@@ -318,6 +320,18 @@ export class AppComponent implements AfterViewInit, OnInit {
     this.setBaseTransform();
   }
 
+  zoomIn() {
+    this.base.scale += 0.1;
+    this.setVariableCSS(`base-scale`, this.base.scale, '');
+  }
+
+  zoomOut() {
+    if (this.base.scale >= 0) {
+      this.base.scale -= 0.1;
+      this.setVariableCSS(`base-scale`, this.base.scale, '');
+    }
+  }
+
   setVariableCSS(selector: string, value: any, suffix = 'px') {
     if (selector) {
       this._element.nativeElement.style.setProperty(
@@ -333,7 +347,11 @@ export class AppComponent implements AfterViewInit, OnInit {
     }
 
     for (const [key, value] of Object.entries(this.base_size)) {
-      this.setVariableCSS(`base-${key}`, value);
+      if (key == 'scale') {
+        this.setVariableCSS(`base-${key}`, value, '');
+      } else {
+        this.setVariableCSS(`base-${key}`, value);
+      }
     }
 
     for (const [key, value] of Object.entries(this.wall_size)) {

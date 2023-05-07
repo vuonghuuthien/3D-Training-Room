@@ -141,7 +141,7 @@
     @if $width_percent == 0 {
       transform: rotateY(-90deg) translateZ($half-width);
     } @else {
-      left: calc(-1 * $half-height);
+      left: calc(-1 * #{$half-height});
       transform: rotateY(-90deg);
     }
     background: $bg_left;
@@ -150,7 +150,7 @@
     @if $width_percent == 0 {
       transform: rotateY(90deg) translateZ($half-width);
     } @else {
-      left: calc(100% - $half-height);
+      left: calc(100% - #{$half-height});
       transform: rotateY(90deg);
     }
     background: $bg_right;
@@ -252,7 +252,7 @@
   #{$selector}__bottom {
     border-top: $depth-face-bottom solid $bg_bottom;
     transform: rotateX(180deg) translateZ($half-height-sm)
-      rotateX(calc(-1 * $angle_height));
+      rotateX(calc(-1 * #{$angle_height}));
   }
   #{$selector}__front {
     transform: rotateX(-90deg) translateZ($half-depth);
@@ -413,6 +413,48 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
+
+    /* Title */
+    .title {
+      font-size: 45px;
+      font-weight: 500;
+      color: white;
+    }
+
+    /* Btn Cont */
+    .btn-cont {
+      margin-top: 20px;
+      display: flex;
+      align-items: center;
+
+      .button {
+        background-color: #292929; /* Green */
+        border: none;
+        color: white;
+        text-decoration: none;
+        font-size: 16px;
+        border-radius: 5px;
+        cursor: pointer;
+        height: 45px;
+        width: 165px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        &:not(:last-of-type) {
+          margin-right: 10px;
+        }
+
+        svg {
+          filter: brightness(0) invert(1);
+        }
+
+        &.btn-zoom {
+          height: 45px;
+          width: 45px;
+        }
+      }
+    }
   }
 
   .env-right {
@@ -489,30 +531,30 @@
   }
 }
 
-.title {
-  font-size: 45px;
-  font-weight: 500;
-  color: white;
-}
+@media screen and (max-width: 834px) {
+  .env {
+    .env-left {
+      .title {
+        font-size: 30px;
+      }
+    }
+    .env-right {
+      height: 100%;
+      flex: auto;
 
-.btn-cont {
-  margin-top: 10px;
-
-  .button {
-    background-color: #292929; /* Green */
-    border: none;
-    color: white;
-    text-align: center;
-    text-decoration: none;
-    font-size: 16px;
-    border-radius: 5px;
-    cursor: pointer;
-    height: 45px;
-    width: 165px;
+      .controls {
+        .control-lr,
+        .control-ud {
+          left: 50%;
+          top: 0;
+        }
+      }
+    }
   }
 }
 
 .base {
+  scale: var(--base-scale);
   width: var(--base-width);
   height: var(--base-depth);
   // transform: perspective(500px) rotateX(70deg) rotateZ(50deg) translateX(100px)
